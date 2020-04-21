@@ -8,27 +8,28 @@ var reload = require('reload');
 // Creates instance of an express server
 var app = express();
 
-// Connect to database
-const connectDB = require('./config/db');
+// Connect to mongoDB database
+var connectDB = require('./config/db');
 connectDB();
 
+// Initialise middleware
 app.use(
 	cors({
 		origin: 'http://localhost:3000',
 	})
 );
-
-// Initialise middleware
 app.use(express.json({ extended: false }));
+app.use(express.static(path.join(__dirname, 'client')));
 
+// Set port to host server
 const PORT = process.env.PORT || 5000;
 
 // Endpoints
 
-// Routes
+// Route for serving landing page (index.html)
 
 app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname + '/index.html'));
+	res.sendFile(path.join(__dirname + '/views/index.html'));
 });
 
 // Route for reading list-related routes
@@ -38,15 +39,16 @@ app.use('/api/lists', require('./routes/api/lists'));
 app.use('/search', require('./routes/api/search'));
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
-var server = http.createServer(app);
 // Reload code here
+
+var server = http.createServer(app);
 reload(app)
 	.then(function (reloadReturned) {
 		// reloadReturned is documented in the returns API in the README
 
 		// Reload started, start web server
 		server.listen(app.get('port'), function () {
-			console.log('Web server listening on port ' + app.get('port'));
+			console.log('Web server listening on port ' + PORT);
 		});
 	})
 	.catch(function (err) {

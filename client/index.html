@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>MyReadingList</title>
+		<meta name="description" content="Customised reading lists" />
+		<meta name="author" content="lukezsmith" />
+
+		<link rel="stylesheet" href="/styles/styles.css" />
+		<link rel="stylesheet" href="/styles/semantic/semantic.css" />
+	</head>
+
+	<body>
+		<div class="ui top attached menu">
+			<a class="item" href="/"> MyReadingList</a>
+		</div>
+		<div class="ui stackable grid">
+			<div class="six wide column brand-col">
+				<img
+					class="ui medium image"
+					src="https://readinglistprog.s3.eu-west-2.amazonaws.com/undraw_reading_time_gvg0.svg"
+				/>
+				<h1>MyReadingList</h1>
+				<p>
+					MyReadingList lets you create and view customised reading lists.
+				</p>
+
+				<a href="/create.html"><h3>Create your own list</h3></a>
+			</div>
+			<div class="ten wide column list-col">
+				<h3>Recent user-created lists:</h3>
+				<div id="landing-list-div"></div>
+			</div>
+		</div>
+		<script src="/reload/reload.js"></script>
+		<script src="/index.js"></script>
+		<script src="/saferInnerHTML/src/js/saferInnerHTML.js"></script>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+body {
+	/* background-color:  !important; */
+}
+.brand-col {
+	padding-left: 10% !important;
+	margin-top: 5%;
+}
+.list-col {
+	padding-right: 10% !important;
+	padding-left: 10% !important;
+	padding-top: 2% !important;
+	text-align: center;
+}
+
+.row {
+	justify-content: center !important;
+}
+
+#list-title {
+	color: black;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+#landing-list-div {
+	padding-top: 2%;
+}
