@@ -1,1 +1,97 @@
-<h1>Hellssaao</h1>
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>MyReadingList</title>
+		<meta name="description" content="Customised reading lists" />
+		<meta name="author" content="lukezsmith" />
+
+		<link rel="stylesheet" href="/styles/styles.css" />
+		<link rel="stylesheet" href="/styles/semantic/semantic.css" />
+	</head>
+
+	<body>
+		<div class="ui top attached menu">
+			<a class="item" href="/"> MyReadingList</a>
+		</div>
+		<div class="ui stackable grid">
+			<div class="six wide column brand-col">
+				<img
+					class="ui medium image"
+					src="https://readinglistprog.s3.eu-west-2.amazonaws.com/undraw_book_lover_mkck.svg"
+					alt=""
+				/>
+				<p id="newlist-title">
+					<span id="brand-title">MyReadingList:</span> new list
+				</p>
+				<!-- <h1>MyReadingList</h1> -->
+
+				<div>
+					<div class="search-div">
+						<p class="search-prompt">
+							Enter a name for the reading list (optional):
+						</p>
+						<form class="ui form">
+							<div class="field">
+								<input
+									type="text"
+									name="list-name"
+									placeholder="Enter a name for this reading list"
+								/>
+							</div>
+						</form>
+					</div>
+					<div class="search-div">
+						<p class="search-prompt">
+							Enter a description for the reading list (optional):
+						</p>
+						<form class="ui form">
+							<div class="field">
+								<input
+									type="text"
+									name="list-desc"
+									placeholder="Enter a description for this reading list"
+								/>
+							</div>
+						</form>
+					</div>
+					<div class="search-div">
+						<p>
+							<span class="search-prompt">
+								Search for a book to add to the reading list:
+							</span>
+							<br />
+							<span class="search-tip">
+								(Tip: add author to make results more accurate)
+							</span>
+						</p>
+
+						<div class="ui search">
+							<div class="ui icon input">
+								<input
+									id="search-input"
+									class="prompt"
+									type="text"
+									placeholder="Enter a book name here"
+								/>
+								<i id="search-icon" class="search icon"></i>
+							</div>
+							<div class="results"></div>
+						</div>
+						<div id="results-div"></div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="ten wide column list-col">
+				<h3>Recent user-created lists:</h3>
+				<div id="landing-list-div"></div>
+			</div> -->
+		</div>
+		<script src="/reload/reload.js"></script>
+		<script src="/lodash.js"></script>
+		<!-- <script src="/index.js"></script> -->
+		<script src="/create.js"></script>
+	</body>
+</html>

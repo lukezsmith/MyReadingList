@@ -1,5 +1,4 @@
 var listDiv = document.getElementById('landing-list-div');
-
 fetch('http://localhost:5000/api/lists')
 	.then(function (res) {
 		return res.json();

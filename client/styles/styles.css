@@ -7,6 +7,17 @@ h1 {
 h3 {
 	font-weight: 510 !important;
 }
+
+input {
+	border-radius: 0.28571429rem !important;
+}
+
+#brand-title {
+	margin-top: 0 !important;
+	font-weight: 510;
+	font-size: 2rem;
+	color: black;
+}
 .brand-col {
 	padding-left: 10% !important;
 	margin-top: 5%;
@@ -68,4 +79,34 @@ h3 {
 	padding-bottom: 1%;
 	padding-left: 5%;
 	padding-right: 5%;
+}
+
+.search-div {
+	margin-bottom: 5%;
+}
+
+.search-prompt {
+	font-weight: bold;
+}
+
+.search-tip {
+	font-size: 75%;
+	margin-bottom: 100% !important;
+}
+
+#newlist-title {
+	color: rgb(82, 87, 107);
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+#results-div {
+	visibility: hidden;
+}
+.results-image {
+	width: 40%;
+}
+.results-segment {
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
 }
