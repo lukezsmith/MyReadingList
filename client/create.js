@@ -1,7 +1,16 @@
 getBooks = _.debounce(getBooks, 500);
 
 var searchValue = document.getElementById('search-input');
+var listTitleInput = document.getElementById('list-title-input');
+var listDescInput = document.getElementById('list-desc-input');
+
+var resultsDiv = document.getElementById('results-div');
+var listDiv = document.getElementById('list-div');
+
+var listTitle = document.getElementById('list-title');
+var listDesc = document.getElementById('list-desc');
 var searchIcon = document.getElementById('search-icon');
+var submitButton = document.getElementById('list-submit-btn');
 
 //check if input is being updated
 searchValue.addEventListener('input', handleValueChange);
@@ -9,7 +18,14 @@ searchValue.addEventListener('input', handleValueChange);
 searchValue.addEventListener('focusin', handleInputFocus);
 searchValue.addEventListener('focusout', handleInputUnfocus);
 
-var resultsDiv = document.getElementById('results-div');
+// add event handler to update the list name
+listTitleInput.addEventListener('input', handleListNameChange);
+
+// add event handler to update the description of the list
+listDescInput.addEventListener('input', handleListDescriptionChange);
+
+// array to store reading list
+var readingList = [];
 
 function handleValueChange() {
 	searchIcon.className = 'circle notch loading icon';
@@ -23,6 +39,114 @@ function handleInputFocus() {
 function handleInputUnfocus() {
 	//make results div visible again
 	resultsDiv.style.visibility = 'hidden';
+}
+
+function handleListNameChange() {
+	listTitle.innerText = this.value + ' Reading List:';
+}
+
+function handleListDescriptionChange() {
+	listDesc.innerText = this.value;
+}
+function handleBookDeletion(book) {
+	submitButton.style.visibility = 'hidden';
+	var index = readingList.indexOf(book);
+	readingList.splice(index, 1);
+	var deletedBookSegment = document.getElementsByClassName(
+		'create-list-segment'
+	)[index];
+	listDiv.removeChild(deletedBookSegment);
+
+	//update indices for reading list
+
+	// iterate through each book in list and check if their segment index matches their index in the reading list
+	var segmentIndices = document.querySelectorAll('#index-text');
+	readingList.forEach(function (book, index) {
+		if (index + 1 !== segmentIndices[index].innerText) {
+			// update  with correct (array+1) index
+			segmentIndices[index].innerText = index + 1;
+		}
+	});
+}
+function handleResultSelect(book) {
+	//add book to reading list
+
+	if (readingList.includes(book)) {
+		window.alert('The reading list already contains this book!');
+	} else if (readingList.length < 5) {
+		readingList.push(book);
+		var segment = document.createElement('div');
+		segment.className = 'ui segment create-list-segment';
+
+		var gridDiv = document.createElement('div');
+		gridDiv.className = 'ui grid';
+
+		var titleRow = document.createElement('div');
+		titleRow.className = 'ui row';
+		var titleText = document.createElement('h3');
+		titleText.className = 'book-title';
+
+		var authorRow = document.createElement('div');
+		authorRow.className = 'ui row';
+
+		var indexCol = document.createElement('div');
+		indexCol.className = 'one wide column';
+		indexCol.id = 'index-col';
+		var indexText = document.createElement('h2');
+		indexText.id = 'index-text';
+
+		var imageCol = document.createElement('div');
+		imageCol.className = 'four wide column';
+		var detailsCol = document.createElement('div');
+		detailsCol.className = 'ten wide column details-col';
+
+		var deleteCol = document.createElement('div');
+		deleteCol.className = 'one wide column';
+		deleteCol.id = 'delete-col';
+
+		var deleteIcon = document.createElement('i');
+		deleteIcon.className = 'x icon icon';
+
+		var deleteBtn = document.createElement('button');
+		deleteBtn.id = 'delete-btn';
+		deleteBtn.className = 'circular negative ui icon button';
+		deleteBtn.addEventListener('mousedown', function () {
+			handleBookDeletion(book);
+		});
+
+		var bookImage = document.createElement('img');
+		bookImage.className = 'ui image list-image';
+		bookImage.src = `${book.imageUrl}`;
+		bookImage.alt = '';
+
+		indexText.innerText = readingList.indexOf(book) + 1;
+		indexCol.appendChild(indexText);
+		gridDiv.appendChild(indexCol);
+		imageCol.appendChild(bookImage);
+		gridDiv.appendChild(imageCol);
+
+		titleText.innerText = book.title;
+		titleRow.appendChild(titleText);
+		detailsCol.appendChild(titleRow);
+		authorRow.innerText = `By ${book.authors}`;
+		detailsCol.appendChild(authorRow);
+		gridDiv.appendChild(detailsCol);
+
+		deleteBtn.appendChild(deleteIcon);
+		deleteCol.appendChild(deleteBtn);
+		gridDiv.appendChild(deleteCol);
+
+		segment.appendChild(gridDiv);
+		listDiv.appendChild(segment);
+
+		if (readingList.length === 5) {
+			submitButton.style.visibility = 'visible';
+		}
+	} else {
+		window.alert(
+			'You have already added five books to your list, remove one to add this book!'
+		);
+	}
 }
 
 function getBooks(value) {
@@ -39,6 +163,13 @@ function getBooks(value) {
 				resultsDiv.innerHTML = '';
 				//populate results div
 				books.map(function (book, index) {
+					var bookLink = document.createElement('a');
+					bookLink.id = 'book-link';
+					bookLink.href = '';
+					bookLink.addEventListener('mousedown', function () {
+						handleResultSelect(book);
+					});
+
 					var segment = document.createElement('div');
 					segment.className = 'ui segment results-segment';
 
@@ -73,7 +204,8 @@ function getBooks(value) {
 					detailsCol.appendChild(authorRow);
 					gridDiv.appendChild(detailsCol);
 					segment.appendChild(gridDiv);
-					resultsDiv.appendChild(segment);
+					bookLink.appendChild(segment);
+					resultsDiv.appendChild(bookLink);
 				});
 			})
 			.catch((err) => {
@@ -83,99 +215,3 @@ function getBooks(value) {
 		searchIcon.className = 'search icon';
 	}
 }
-
-// console.log(searchValue);
-// fetch(`http://localhost:5000/search/${value}`, {
-// 	method: 'POST',
-// })
-// 	.then((res) => {
-// 		return res.json();
-// 	})
-// 	.then((data) => {
-// 		this.setState({ results: data, isLoading: false });
-// 	})
-// 	.catch((err) => {
-// 		console.error(err.message);
-// 	});
-
-// fetch('http://localhost:5000/api/lists')
-// 	.then(function (res) {
-// 		return res.json();
-// 	})
-// 	.then(function (lists) {
-// 		console.log(lists);
-// 		var listHtml = lists
-// 			.map(function (list) {
-// 				var segment = document.createElement('div');
-// 				segment.className = 'ui segment';
-
-// 				var gridDiv = document.createElement('div');
-// 				gridDiv.className = 'ui five column grid';
-
-// 				var gridRow1 = document.createElement('div');
-// 				gridRow1.className = 'ui row';
-
-// 				var gridRow2 = document.createElement('div');
-// 				gridRow2.className = 'ui row';
-
-// 				var gridCol1 = document.createElement('div');
-// 				gridCol1.className = 'column';
-// 				var gridCol2 = document.createElement('div');
-// 				gridCol2.className = 'column';
-// 				var gridCol3 = document.createElement('div');
-// 				gridCol3.className = 'column';
-// 				var gridCol4 = document.createElement('div');
-// 				gridCol4.className = 'column';
-// 				var gridCol5 = document.createElement('div');
-// 				gridCol5.className = 'column';
-
-// 				var bookImage1 = document.createElement('img');
-// 				bookImage1.className = 'ui tiny image';
-// 				bookImage1.src = `${list.list[0].imageUrl}`;
-// 				bookImage1.alt = '';
-
-// 				var bookImage2 = document.createElement('img');
-// 				bookImage2.className = 'ui tiny image';
-// 				bookImage2.src = `${list.list[1].imageUrl}`;
-// 				bookImage2.alt = '';
-
-// 				var bookImage3 = document.createElement('img');
-// 				bookImage3.className = 'ui tiny image';
-// 				bookImage3.src = `${list.list[2].imageUrl}`;
-// 				bookImage3.alt = '';
-
-// 				var bookImage4 = document.createElement('img');
-// 				bookImage4.className = 'ui tiny image';
-// 				bookImage4.src = `${list.list[3].imageUrl}`;
-// 				bookImage4.alt = '';
-
-// 				var bookImage5 = document.createElement('img');
-// 				bookImage5.className = 'ui tiny image';
-// 				bookImage5.src = `${list.list[4].imageUrl}`;
-// 				bookImage5.alt = '';
-
-// 				var listName = document.createElement('a');
-// 				listName.href = `/list/${list._id}`;
-// 				listName.class = 'list-title';
-// 				listName.innerHTML = `${list.name}`;
-
-// 				gridCol1.appendChild(bookImage1);
-// 				gridCol2.appendChild(bookImage2);
-// 				gridCol3.appendChild(bookImage3);
-// 				gridCol4.appendChild(bookImage4);
-// 				gridCol5.appendChild(bookImage5);
-// 				gridRow1.appendChild(listName);
-// 				gridRow2.appendChild(gridCol1);
-// 				gridRow2.appendChild(gridCol2);
-// 				gridRow2.appendChild(gridCol3);
-// 				gridRow2.appendChild(gridCol4);
-// 				gridRow2.appendChild(gridCol5);
-// 				gridDiv.appendChild(gridRow1);
-// 				gridDiv.appendChild(gridRow2);
-// 				segment.appendChild(gridDiv);
-// 				listDiv.appendChild(segment);
-
-// 				return '';
-// 			})
-// 			.join('');
-// 	});

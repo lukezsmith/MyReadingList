@@ -13,8 +13,8 @@
 	</head>
 
 	<body>
-		<div class="ui top attached menu">
-			<a class="item" href="/"> MyReadingList</a>
+		<div class="ui top attached large menu">
+			<a id="nav-logo" class="item" href="/"> MyReadingList</a>
 		</div>
 		<div class="ui stackable grid">
 			<div class="six wide column brand-col">
@@ -39,6 +39,7 @@
 									type="text"
 									name="list-name"
 									placeholder="Enter a name for this reading list"
+									id="list-title-input"
 								/>
 							</div>
 						</form>
@@ -53,6 +54,7 @@
 									type="text"
 									name="list-desc"
 									placeholder="Enter a description for this reading list"
+									id="list-desc-input"
 								/>
 							</div>
 						</form>
@@ -84,10 +86,12 @@
 					</div>
 				</div>
 			</div>
-			<!-- <div class="ten wide column list-col">
-				<h3>Recent user-created lists:</h3>
-				<div id="landing-list-div"></div>
-			</div> -->
+			<div class="ten wide column list-col">
+				<h1 id="list-title">Your reading list:</h1>
+				<p id="list-desc"></p>
+				<div id="list-div"></div>
+				<button class="ui button" id="list-submit-btn">Submit</button>
+			</div>
 		</div>
 		<script src="/reload/reload.js"></script>
 		<script src="/lodash.js"></script>
