@@ -1,6 +1,12 @@
 body {
 	/* background-color:  !important; */
 }
+h1 {
+	font-weight: 510 !important;
+}
+h3 {
+	font-weight: 510 !important;
+}
 .brand-col {
 	padding-left: 10% !important;
 	margin-top: 5%;
@@ -16,12 +22,50 @@ body {
 	justify-content: center !important;
 }
 
-#list-title {
+.list-title {
 	color: black;
-	text-decoration: underline;
 	font-weight: bold;
+	justify-content: center;
+	display: flex;
+	padding-bottom: 1%;
 }
 
 #landing-list-div {
 	padding-top: 2%;
+}
+
+#list-list-div {
+	padding-bottom: 2%;
+}
+
+.list-segment {
+	margin-right: 10% !important;
+	margin-left: 10% !important;
+	margin-top: 0 !important;
+	margin-bottom: 0 !important;
+}
+
+.details-col {
+	text-align: center;
+	vertical-align: middle;
+	align-self: center;
+}
+
+#index-col {
+	background-color: lightgrey;
+	text-align: center;
+	align-self: center;
+	vertical-align: middle;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.list-image {
+	width: 75%;
+}
+
+.book-title {
+	padding-bottom: 1%;
+	padding-left: 5%;
+	padding-right: 5%;
 }

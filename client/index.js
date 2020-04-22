@@ -34,26 +34,31 @@ fetch('http://localhost:5000/api/lists')
 				var bookImage1 = document.createElement('img');
 				bookImage1.className = 'ui tiny image';
 				bookImage1.src = `${list.list[0].imageUrl}`;
+				bookImage1.alt = '';
 
 				var bookImage2 = document.createElement('img');
 				bookImage2.className = 'ui tiny image';
 				bookImage2.src = `${list.list[1].imageUrl}`;
+				bookImage2.alt = '';
 
 				var bookImage3 = document.createElement('img');
 				bookImage3.className = 'ui tiny image';
 				bookImage3.src = `${list.list[2].imageUrl}`;
+				bookImage3.alt = '';
 
 				var bookImage4 = document.createElement('img');
 				bookImage4.className = 'ui tiny image';
 				bookImage4.src = `${list.list[3].imageUrl}`;
+				bookImage4.alt = '';
 
 				var bookImage5 = document.createElement('img');
 				bookImage5.className = 'ui tiny image';
 				bookImage5.src = `${list.list[4].imageUrl}`;
+				bookImage5.alt = '';
 
 				var listName = document.createElement('a');
-				listName.href = '/';
-				listName.id = 'list-title';
+				listName.href = `/list/${list._id}`;
+				listName.class = 'list-title';
 				listName.innerHTML = `${list.name}`;
 
 				gridCol1.appendChild(bookImage1);

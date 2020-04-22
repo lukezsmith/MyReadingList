@@ -26,11 +26,25 @@ const PORT = process.env.PORT || 5000;
 
 // Endpoints
 
+// File-serving routes
+
 // Route for serving landing page (index.html)
 
 app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname + '/views/index.html'));
+	res.sendFile(path.join(__dirname + '/client/index.html'));
 });
+
+// Route  for serving specific reading list
+app.get('/list/:id', function (req, res) {
+	res.sendFile(path.join(__dirname + '/client/list.html'));
+});
+
+// Route  for creating new reading list
+app.get('/create', function (req, res) {
+	res.sendFile(path.join(__dirname + '/client/create.html'));
+});
+
+// Api Routes
 
 // Route for reading list-related routes
 app.use('/api/lists', require('./routes/api/lists'));
