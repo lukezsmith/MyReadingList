@@ -27,15 +27,32 @@ router.get('/:id', async (req, res) => {
 // @access  Public
 router.post('/', async (req, res) => {
 	try {
-		const { name, list, comments } = req.body;
+		const { name, desc, list, comments } = req.body;
 		readingList = new ReadingList({
 			name,
+			desc,
 			list,
 			comments,
 		});
 
 		await readingList.save();
-		res.send('list added');
+		res.send(readingList);
+	} catch (err) {
+		console.error(err.message);
+	}
+});
+
+// @route   PATCH api/lists/id
+// @desc    Add new comment to list
+// @access  Public
+router.patch('/:id', async (req, res) => {
+	try {
+		const { comment } = req.body;
+		const listId = req.params.id;
+		const readingList = await ReadingList.findById(listId);
+		readingList.comments.push(comment);
+		await readingList.save();
+		res.send('comment added');
 	} catch (err) {
 		console.error(err.message);
 	}

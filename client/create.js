@@ -24,6 +24,9 @@ listTitleInput.addEventListener('input', handleListNameChange);
 // add event handler to update the description of the list
 listDescInput.addEventListener('input', handleListDescriptionChange);
 
+// add event handler to submit button
+submitButton.addEventListener('mousedown', handleListSubmit);
+
 // array to store reading list
 var readingList = [];
 
@@ -68,10 +71,34 @@ function handleBookDeletion(book) {
 		}
 	});
 }
+
+function handleListSubmit() {
+	fetch('http://localhost:5000/api/lists', {
+		method: 'POST',
+		mode: 'cors',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({
+			name: listTitle.innerText,
+			desc: listDesc.innerText,
+			list: readingList,
+			// comments: listComments,
+		}),
+	})
+		.then(function (res) {
+			return res.json();
+		})
+		.then(function (res) {
+			console.log(res);
+			window.location.href = `list/${res._id}`;
+		})
+		.catch(function (err) {
+			console.error(err.message);
+		});
+}
 function handleResultSelect(book) {
 	//add book to reading list
 
-	if (readingList.includes(book)) {
+	if (readingList.includes(book) || isDuplicateBook(book, readingList)) {
 		window.alert('The reading list already contains this book!');
 	} else if (readingList.length < 5) {
 		readingList.push(book);
@@ -213,5 +240,46 @@ function getBooks(value) {
 			});
 	} else {
 		searchIcon.className = 'search icon';
+	}
+}
+
+function isDuplicateBook(book, readingList) {
+	var duplicateCount = 0;
+	var threshold = 3;
+
+	readingList.forEach((existingBook) => {
+		var existingBookPublishedDate = new Date(
+			Date.parse(existingBook.publishedDate)
+		);
+		var bookPublishedDate = new Date(Date.parse(book.publishedDate));
+
+		if (existingBook.title === book.title) {
+			duplicateCount += 1;
+		}
+
+		if (existingBook.authors === book.authors) {
+			console.log('author duplicate!!!!!!');
+			console.log('old book: ', existingBook.authors);
+			console.log('newbook: ', book.authors);
+			duplicateCount += 1;
+		}
+
+		if (existingBook.publisherName === book.publisherName) {
+			duplicateCount += 1;
+		}
+
+		if (
+			existingBookPublishedDate === bookPublishedDate ||
+			(existingBookPublishedDate.getMonth() === bookPublishedDate.getMonth() &&
+				existingBookPublishedDate.getFullYear() ===
+					bookPublishedDate.getFullYear())
+		) {
+			duplicateCount += 1;
+		}
+	});
+	if (duplicateCount > threshold) {
+		return true;
+	} else {
+		return false;
 	}
 }

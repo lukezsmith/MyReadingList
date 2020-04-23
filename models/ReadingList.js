@@ -18,6 +18,9 @@ const ReadingListSchema = new mongoose.Schema({
 		type: String,
 		default: 'Your Reading List',
 	},
+	desc: {
+		type: String,
+	},
 	list: [bookSchema],
 	date: { type: Date, default: Date.now() },
 	comments: [String],

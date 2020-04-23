@@ -17,11 +17,26 @@
 			<a class="item" href="/"> MyReadingList</a>
 		</div>
 		<div>
-			<div class="list-title">
+			<div id="list-details-div">
 				<h1 id="list-title" class="list-title"></h1>
+				<p id="list-desc"></p>
 			</div>
 			<div id="list-list-div"></div>
 		</div>
+		<div id="comments-div" class="ui comments">
+			<h3 class="ui dividing header">Comments</h3>
+		</div>
+		<div id="comments-input-div">
+			<form class="ui reply form">
+				<div class="field">
+					<textarea id="comment-input" style="height: 45px;"></textarea>
+				</div>
+				<div id="comment-submit-btn" class="ui icon button">
+					<i class="icon edit"></i> Add Comment
+				</div>
+			</form>
+		</div>
+
 		<script src="/reload/reload.js"></script>
 		<script src="/list.js"></script>
 	</body>

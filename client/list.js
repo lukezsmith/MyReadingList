@@ -1,7 +1,41 @@
 var listId = window.location.pathname.split('/')[2];
 var listDiv = document.getElementById('list-list-div');
 var listName = document.getElementById('list-title');
+var listDesc = document.getElementById('list-desc');
 
+var commentSubmitBtn = document.getElementById('comment-submit-btn');
+
+commentSubmitBtn.addEventListener('mousedown', function () {
+	var commentValue = document.getElementById('comment-input').value;
+	handleCommentSubmit(commentValue);
+});
+
+function handleCommentSubmit(commentValue) {
+	//check comment value is not empty
+	if (commentValue && commentValue.trim().length > 0) {
+		console.log('valid comment');
+		console.log(commentValue);
+		//update list with new comment
+		fetch(`http://localhost:5000/api/lists/${listId}`, {
+			method: 'PATCH',
+			mode: 'cors',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				comment: commentValue,
+			}),
+		})
+			.then(function (res) {
+				return res;
+			})
+			.then(function (res) {
+				location.reload();
+				window.scrollTo(0, 0);
+			})
+			.catch(function (err) {
+				console.error(err);
+			});
+	}
+}
 fetch(`http://localhost:5000/api/lists/${listId}`)
 	.then(function (res) {
 		return res.json();
@@ -12,8 +46,10 @@ fetch(`http://localhost:5000/api/lists/${listId}`)
 		// update list title
 		listName.innerText = list.name;
 
-		// map each list to a list item
+		// update list description
+		listDesc.innerText = list.desc;
 
+		// map each list to a list item
 		var listHtml = list.list
 			.map(function (book, index) {
 				//move all of these definitions outside of map loop????? we are redefining them each time
@@ -63,4 +99,40 @@ fetch(`http://localhost:5000/api/lists/${listId}`)
 				listDiv.appendChild(segment);
 			})
 			.join('');
+
+		var commentsDiv = document.getElementById('comments-div');
+		// if comments
+		if (list.comments.length !== 0) {
+			var comments = list.comments.map(function (comment, index) {
+				var commentDiv = document.createElement('div');
+				commentDiv.className = 'comment';
+
+				var avatar = document.createElement('i');
+				avatar.className = 'avatar user bordered grey icon ';
+
+				var commentContent = document.createElement('div');
+				commentContent.className = 'content';
+
+				var commentAuthor = document.createElement('h4');
+				commentAuthor.innerText = 'anonymous';
+
+				var commentText = document.createElement('div');
+				commentText.innerText = comment;
+
+				commentDiv.appendChild(avatar);
+				commentContent.appendChild(commentAuthor);
+				commentContent.appendChild(commentText);
+				commentDiv.appendChild(commentContent);
+
+				commentsDiv.appendChild(commentDiv);
+			});
+		} else {
+			// console.log('No comments found');
+			// var noComments = document.createElement('p');
+			// noComments.innerText = 'No comments';
+			// commentsDiv.appendChild(noComments);
+		}
+	})
+	.catch(function (err) {
+		console.error(err.message);
 	});

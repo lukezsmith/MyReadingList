@@ -43,6 +43,13 @@ input {
 	justify-content: center;
 	display: flex;
 	padding-bottom: 1%;
+	color: black !important;
+}
+
+#landing-list-title {
+	color: black !important;
+	font-weight: bold;
+	text-decoration: underline;
 }
 
 #landing-list-div {
@@ -54,10 +61,14 @@ input {
 }
 
 .list-segment {
-	margin-right: 10% !important;
-	margin-left: 10% !important;
+	margin-right: 20% !important;
+	margin-left: 20% !important;
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
+}
+
+#list-title {
+	margin-top: 1%;
 }
 
 .details-col {
@@ -130,4 +141,35 @@ input {
 
 #list-submit-btn:hover {
 	background-color: rgb(39, 34, 76) !important;
+}
+
+#comments-div {
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+#comments-input-div {
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-bottom: 2%;
+}
+
+#comment-submit-btn {
+	background-color: rgb(82, 87, 107);
+	color: white;
+}
+
+#comment-submit-btn:hover {
+	background-color: rgb(39, 34, 76) !important;
+}
+
+.comment {
+	padding-bottom: 2% !important;
+	vertical-align: middle;
+}
+
+#list-details-div {
+	align-self: center;
+	text-align: center;
+	padding-bottom: 2%;
 }

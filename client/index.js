@@ -58,6 +58,7 @@ fetch('http://localhost:5000/api/lists')
 				var listName = document.createElement('a');
 				listName.href = `/list/${list._id}`;
 				listName.class = 'list-title';
+				listName.id = 'landing-list-title';
 				listName.innerHTML = `${list.name}`;
 
 				gridCol1.appendChild(bookImage1);
@@ -116,4 +117,7 @@ fetch('http://localhost:5000/api/lists')
 
 		// listDiv.innerHTML = listHtml;
 		// listDiv.appendChild(listHtml);
+	})
+	.catch(function (err) {
+		console.error(err.message);
 	});
