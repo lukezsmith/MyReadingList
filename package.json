@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server",
+    "start": "nodemon server",
     "test": "jest",
-    "pretest": "npx eslint -c .eslintrc.js server.js ../client/index.js ../client/create.js ../client/list.js"
+    "pretest": "npx eslint -c .eslintrc.js server.js app.js ./client/index.js ./client/create.js ./client/list.js"
   },
   "repository": {
     "type": "git",

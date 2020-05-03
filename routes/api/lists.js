@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const ReadingList = require('../../models/ReadingList');
 
+// Endpoints
+
 // @route   GET api/lists/id
 // @desc    Get a reading list by id
 // @access  Public

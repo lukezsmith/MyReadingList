@@ -7,8 +7,12 @@ const axios = require('axios');
 
 const Book = require('../../Book');
 
+
+// Google Books API endpoint for getting list of volumes
 const googleBooksUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
 
+
+// Helper functions for validating books
 function allFieldsPresent(book) {
 	if (
 		!book.hasOwnProperty('title') ||
@@ -88,6 +92,9 @@ function isDuplicateBook(newBook, bookArray, threshold, flag) {
 		return false;
 	}
 }
+
+
+// Endpoints
 
 // @route   POST book query to get books from Google Books Api
 // @desc    Gets a list of books from Google Books API that the user can add to a reading list

@@ -10,7 +10,7 @@ class Book {
 	) {
 		this.id = id;
 
-		//create title composite with subtitle for display purposes
+		// Create title composite with subtitle for display purposes
 		if (subtitle != '') {
 			this.title = title + ': ' + subtitle;
 		} else {
@@ -39,7 +39,7 @@ class Book {
 	}
 
 	getAuthors() {
-		//create formatting for receiving authors
+		// Create formatting for receiving authors
 		return this.title;
 	}
 
@@ -63,11 +63,6 @@ class Book {
 						authorString += `${authors[i]}, `;
 						break;
 				}
-				// if (i == 0 || i == authors.length - 1) {
-				// 	authorString += authors[i];
-				// } else {
-				// 	authorString += `${authors[i]} & `;
-				// }
 			}
 		}
 		return authorString;
@@ -80,10 +75,6 @@ class Book {
 	getPublishedDate() {
 		return this.publishedDate;
 	}
-
-	// getIsbn() {
-	// 	return this.isbn;
-	// }
 
 	getImageUrl() {
 		return this.imageUrl;
