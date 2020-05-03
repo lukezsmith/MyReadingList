@@ -28,7 +28,6 @@ function allFieldsPresent (book) {
 }
 
 function isDuplicateBook (newBook, bookArray, threshold, flag) {
-  // console.log('CHECKING FOR DUPLICATE');
   var duplicateCount = 0;
 
   bookArray.forEach((existingBook) => {
@@ -38,9 +37,6 @@ function isDuplicateBook (newBook, bookArray, threshold, flag) {
     var bookPublishedDate = new Date(Date.parse(newBook.publishedDate));
 
     if (existingBook.title === newBook.title) {
-      // console.log('title duplicate!!!!!!');
-      // console.log('old book: ', existingBook.title);
-      // console.log('newbook: ', newBook.title);
       duplicateCount += 1;
     }
 
@@ -49,25 +45,14 @@ function isDuplicateBook (newBook, bookArray, threshold, flag) {
       newBook.authors.forEach((author) => {
         if (existingBook.authors.includes(author)) {
           duplicateCount += 0.5;
-          // console.log('author duplicate!!!!!!');
-          // console.log('old book: ', existingBook.title);
-          // console.log('newbook: ', newBook.title);
         }
       });
     } else {
       if (existingBook.authors === newBook.authors) {
-        // console.log('author duplicate!!!!!!');
-        // console.log('old book: ', existingBook.authors);
-        // console.log('newbook: ', newBook.authors);
         duplicateCount += 1;
       }
     }
     if (existingBook.publisherName === newBook.publisherName) {
-      // console.log('publisher duplicate!!!!!!');
-      // console.log('old book: ', existingBook.publisherName);
-      // console.log(existingBook);
-      // console.log('newbook: ', newBook.publisherName);
-      // console.log(newBook);
       duplicateCount += 1;
     }
 
@@ -77,14 +62,10 @@ function isDuplicateBook (newBook, bookArray, threshold, flag) {
         existingBookPublishedDate.getFullYear() ===
           bookPublishedDate.getFullYear())
     ) {
-      // console.log('date duplicate!!!!!!');
-      // console.log('old book: ', existingBookPublishedDate);
-      // console.log('newbook: ', bookPublishedDate);
       duplicateCount += 1;
     }
   });
   if (duplicateCount > threshold) {
-    console.log('DUPLICATE');
     return true;
   } else {
     return false;
@@ -111,15 +92,11 @@ router.post('/:query', async (req, res) => {
           `&key=${googleBooksApiKey}`
       )
       .then((googleRes) => {
-        // res.json(response);\
         // if no books found for this query
         if (googleRes.data.totalItems !== 0) {
           // create book object for each result (maybe we need to limit this to say 50 books or so)
           const bookData = googleRes.data.items;
 
-          // TODO: iterate from 0 to the lowest betweejn bookresLimit and amount of results for query
-
-          // for (let i = 0; i < Math.min(this.state.bookResLimit, 40); i++) {
           for (let i = 0; i < Math.min(bookResLimit, 40); i++) {
             const book = bookData[i];
 
@@ -128,9 +105,7 @@ router.post('/:query', async (req, res) => {
               !allFieldsPresent(book.volumeInfo) ||
               isDuplicateBook(book.volumeInfo, bookArray, 2, 'results')
             ) {
-              // this.setState({ bookResLimit: (this.state.bookResLimit += 1) });
               bookResLimit += 1;
-              // console.log('duplicate found');
             } else {
               if (bookArray.length !== bookResLimit) {
                 bookArray.push(

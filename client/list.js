@@ -71,14 +71,13 @@ fetch(`http://localhost:5000/api/lists/${listId}`)
         authorRow.className = 'ui row';
 
         var indexCol = document.createElement('div');
-        indexCol.className = 'one wide column';
-        indexCol.id = 'index-col';
-        var indexText = document.createElement('h2');
+        indexCol.className = 'one wide column index-col';
+        var indexText = document.createElement('p');
 
         var imageCol = document.createElement('div');
-        imageCol.className = 'two wide column';
+        imageCol.className = 'four wide column image-col';
         var detailsCol = document.createElement('div');
-        detailsCol.className = 'twelve wide column details-col';
+        detailsCol.className = 'ten wide column details-col';
 
         var bookImage = document.createElement('img');
         bookImage.className = 'ui image list-image';

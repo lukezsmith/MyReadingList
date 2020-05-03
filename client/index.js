@@ -34,7 +34,7 @@ fetch('http://localhost:5000/api/lists')
           bookCol.className = 'column';
 
           var bookImage = document.createElement('img');
-          bookImage.className = 'ui tiny image list-image';
+          bookImage.className = 'ui tiny image landing-list-image';
           bookImage.src = `${book.imageUrl}`;
           bookImage.alt = '';
 

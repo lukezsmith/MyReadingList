@@ -26,7 +26,19 @@ input {
 	padding-left: 10% !important;
 	margin-top: 5%;
 }
+
+.create-brand-col{
+	padding-left: 10% !important;
+	margin-top: 5%;
+}
 .list-col {
+	padding-right: 10% !important;
+	padding-left: 10% !important;
+	padding-top: 2% !important;
+	text-align: center;
+}
+
+.create-list-col{
 	padding-right: 10% !important;
 	padding-left: 10% !important;
 	padding-top: 2% !important;
@@ -81,22 +93,38 @@ input {
 	align-self: center;
 }
 
-#index-col {
+.index-col {
 	background-color: rgb(82, 87, 107);
 	color: white;
 	text-align: center;
 	align-self: center;
-	vertical-align: middle;
-	padding-left: 0;
-	padding-right: 0;
+	vertical-align: middle !important;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	font-size: large
 }
 
-#delete-col {
+.image-col{
+	text-align: center;
 	align-self: center;
 	vertical-align: middle;
 }
 
+.delete-col {
+	align-self: center;
+	vertical-align: middle;
+	padding-left: 0 !important;
+}
+
+.delete-icon{
+	font-size: x-small !important;
+}
+
 .list-image {
+	width: 45% !important;
+}
+
+.landing-list-image{
 	width: 75% !important;
 	padding-bottom: 20%;
 }
@@ -105,6 +133,7 @@ input {
 	padding-bottom: 1%;
 	padding-left: 5%;
 	padding-right: 5%;
+	font-size: 1rem
 }
 
 .search-div {
@@ -223,4 +252,73 @@ input {
 
 #create-list-btn:hover {
 	background-color: rgb(39, 34, 76) !important;
+}
+
+@media only screen and (max-width: 767px){
+	.list-segment {
+		margin-left: 3% !important;
+		margin-right: 3% !important;
+	}
+
+	.list-image{
+		width: 80% !important
+	}
+
+	#comments-div{
+		margin-left: 3% !important;
+		margin-right: 3% !important;
+	}
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+
+body > div.ui.stackable.grid{
+	box-sizing: inherit;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 0em;
+	margin-top: -1rem;
+	margin-bottom: -1rem;
+	width: auto;
+}
+
+body > div.ui.stackable.grid > div.six.wide.column.brand-col{
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+	align-self: center;
+	align-content: center;
+	justify-content: center;
+	text-align: center !important;
+	-webkit-box-direction: normal;
+	box-sizing: inherit;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	width: 100% !important;
+	box-shadow: none !important;
+	}
+
+body > div.ui.stackable.grid > div.ten.wide.column.list-col{
+	-webkit-box-direction: normal;
+	box-sizing: inherit;
+	text-align: center;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	width: 100% !important;
+	margin: 0em 0em !important;
+	box-shadow: none !important;
+}
+
+
+.list-image{
+	width: 75% !important
+}
+
+#book-link > div > div > div.ten.wide.column > div > h4{
+	font-size: small
+}
+
 }

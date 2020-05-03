@@ -3,9 +3,10 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
 		<title>MyReadingList</title>
 		<meta name="description" content="Customised reading lists" />
+		
 		<meta name="author" content="lukezsmith" />
 
 		<link rel="stylesheet" href="/styles/styles.css" />
@@ -17,16 +18,15 @@
 			<a id="nav-logo" class="item" href="/"> MyReadingList</a>
 		</div>
 		<div class="ui stackable grid">
-			<div class="six wide column brand-col">
+			<div class="six wide column create-brand-col">
 				<img
-					class="ui medium image"
+					class="ui medium centered image"
 					src="https://readinglistprog.s3.eu-west-2.amazonaws.com/undraw_book_lover_mkck.svg"
 					alt=""
 				/>
 				<p id="newlist-title">
 					<span id="brand-title">MyReadingList:</span> new list
 				</p>
-				<!-- <h1>MyReadingList</h1> -->
 
 				<div>
 					<div class="search-div">
@@ -86,7 +86,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="ten wide column list-col">
+			<div class="ten wide column create-list-col">
 				<h1 id="list-title">Your reading list:</h1>
 				<p id="list-desc"></p>
 				<div id="list-div"></div>

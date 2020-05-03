@@ -122,26 +122,23 @@ function handleResultSelect (book) {
     authorRow.className = 'ui row';
 
     var indexCol = document.createElement('div');
-    indexCol.className = 'one wide column';
-    indexCol.id = 'index-col';
+    indexCol.className = 'one wide column index-col';
     var indexText = document.createElement('h2');
     indexText.id = 'index-text';
 
     var imageCol = document.createElement('div');
-    imageCol.className = 'four wide column';
+    imageCol.className = 'four wide column image-col';
     var detailsCol = document.createElement('div');
-    detailsCol.className = 'ten wide column details-col';
+    detailsCol.className = 'nine wide column details-col';
 
     var deleteCol = document.createElement('div');
-    deleteCol.className = 'one wide column';
-    deleteCol.id = 'delete-col';
+    deleteCol.className = 'two wide column delete-col';
 
     var deleteIcon = document.createElement('i');
-    deleteIcon.className = 'x icon icon';
+    deleteIcon.className = 'x icon icon delete-icon';
 
     var deleteBtn = document.createElement('button');
-    deleteBtn.id = 'delete-btn';
-    deleteBtn.className = 'circular negative ui icon button';
+    deleteBtn.className = 'circular negative ui icon button delete-icon';
     deleteBtn.addEventListener('mousedown', function () {
       handleBookDeletion(book);
     });

@@ -9,7 +9,6 @@ const ReadingList = require('../../models/ReadingList');
 // @access  Public
 router.get('/:id', async (req, res) => {
   try {
-    // res.send('Reading List route');
     const list = await ReadingList.findById(req.params.id);
     if (!list) {
       return res.status(400).send('List not found');
@@ -65,14 +64,8 @@ router.patch('/:id', async (req, res) => {
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    // const lists = await ReadingList.find().exec(function (err, listObjects) {
-    // console.log(listObjects.list);
-    // // listObjects = listObjects.map((listObject.list) => list.toObject());
-    // res.json(lists);
     const lists = await ReadingList.find().limit(10).sort('-date');
     res.json(lists);
-
-    // });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
