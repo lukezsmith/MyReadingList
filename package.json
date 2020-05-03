@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server",
     "test": "jest",
-    "pretest": "npx eslint -c .eslintrc.js server.js app.js ./client/index.js ./client/create.js ./client/list.js"
+    "pretest": "npx eslint -c .eslintrc.js server.js app.js Book.js ./routes/api/lists.js ./routes/api/search.js ./client/index.js ./client/create.js ./client/list.js"
   },
   "repository": {
     "type": "git",
