@@ -1,32 +1,39 @@
 {
-	"name": "prog_web_assignment_vanilla",
-	"version": "1.0.0",
-	"description": "",
-	"main": "server.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"server": "nodemon server"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/lukezsmith/prog_web_assignment_vanilla.git"
-	},
-	"author": "lukezsmith",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/lukezsmith/prog_web_assignment_vanilla/issues"
-	},
-	"homepage": "https://github.com/lukezsmith/prog_web_assignment_vanilla#readme",
-	"devDependencies": {
-		"config": "^3.3.1",
-		"cors": "^2.8.5",
-		"express": "^4.17.1",
-		"mongoose": "^5.9.10",
-		"nodemon": "^2.0.3",
-		"semantic-ui": "^2.4.2",
-		"tiny-slider": "^2.9.2"
-	},
-	"dependencies": {
-		"reload": "^3.0.4"
-	}
+  "name": "prog_web_assignment_vanilla",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "server": "nodemon server",
+    "test": "jest",
+    "pretest": "npx eslint -c .eslintrc.js server.js ../client/index.js ../client/create.js ../client/list.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukezsmith/prog_web_assignment_vanilla.git"
+  },
+  "author": "lukezsmith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukezsmith/prog_web_assignment_vanilla/issues"
+  },
+  "homepage": "https://github.com/lukezsmith/prog_web_assignment_vanilla#readme",
+  "devDependencies": {
+    "config": "^3.3.1",
+    "cors": "^2.8.5",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.10",
+    "nodemon": "^2.0.3",
+    "semantic-ui": "^2.4.2",
+    "tiny-slider": "^2.9.2"
+  },
+  "dependencies": {
+    "reload": "^3.0.4"
+  }
 }
