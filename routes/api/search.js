@@ -2,15 +2,13 @@ const express = require('express');
 const router = express.Router();
 const config = require('config');
 const googleBooksApiKey = config.get('googleBooksApiKey');
-
 const axios = require('axios');
-
 const Book = require('../../Book');
 
 // Google Books API endpoint for getting list of volumes
 const googleBooksUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
 
-// Helper functions for validating books
+// Helper function for validating each book returned by Google Books API GET request
 function allFieldsPresent (book) {
   if (
     !Object.prototype.hasOwnProperty.call(book, 'title') ||
@@ -27,6 +25,7 @@ function allFieldsPresent (book) {
   return true;
 }
 
+// Helper function for filtering out duplicate books in search results
 function isDuplicateBook (newBook, bookArray, threshold, flag) {
   var duplicateCount = 0;
 
@@ -81,8 +80,6 @@ router.post('/:query', async (req, res) => {
   var bookResLimit = 5;
   var bookArray = [];
 
-  // console.log(req.params.query);
-
   try {
     await axios
       .get(
@@ -92,7 +89,7 @@ router.post('/:query', async (req, res) => {
           `&key=${googleBooksApiKey}`
       )
       .then((googleRes) => {
-        // if no books found for this query
+        // if books found for this query
         if (googleRes.data.totalItems !== 0) {
           // create book object for each result (maybe we need to limit this to say 50 books or so)
           const bookData = googleRes.data.items;
@@ -107,6 +104,7 @@ router.post('/:query', async (req, res) => {
             ) {
               bookResLimit += 1;
             } else {
+              // Push book to results array
               if (bookArray.length !== bookResLimit) {
                 bookArray.push(
                   new Book(
@@ -123,10 +121,12 @@ router.post('/:query', async (req, res) => {
             }
           }
         }
+        // Send search results
         res.json(bookArray);
       });
   } catch (err) {
     console.error(err.message);
+    // todo
   }
 });
 module.exports = router;

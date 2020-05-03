@@ -2,17 +2,6 @@
 /* global _ */
 
 var searchValue = document.getElementById('search-input');
-var listTitleInput = document.getElementById('list-title-input');
-var listDescInput = document.getElementById('list-desc-input');
-
-var resultsDiv = document.getElementById('results-div');
-var listDiv = document.getElementById('list-div');
-
-var listTitle = document.getElementById('list-title');
-var listDesc = document.getElementById('list-desc');
-var searchIcon = document.getElementById('search-icon');
-var submitButton = document.getElementById('list-submit-btn');
-
 // check if input is being updated
 searchValue.addEventListener('input', handleValueChange);
 // check for if input is focused or not
@@ -20,45 +9,64 @@ searchValue.addEventListener('focusin', handleInputFocus);
 searchValue.addEventListener('focusout', handleInputUnfocus);
 
 // add event handler to update the list name
+var listTitleInput = document.getElementById('list-title-input');
 listTitleInput.addEventListener('input', handleListNameChange);
 
 // add event handler to update the description of the list
+var listDescInput = document.getElementById('list-desc-input');
 listDescInput.addEventListener('input', handleListDescriptionChange);
 
-// add event handler to submit button
+// Elements used across all functions
+var resultsDiv = document.getElementById('results-div');
+var listDiv = document.getElementById('list-div');
+var listTitle = document.getElementById('list-title');
+var listDesc = document.getElementById('list-desc');
+var searchIcon = document.getElementById('search-icon');
+
+// Adds event handler to submit button when clicked
+var submitButton = document.getElementById('list-submit-btn');
 submitButton.addEventListener('mousedown', handleListSubmit);
 
-// debounced version of getBooks
+// Debounced version of getBooks
 var debouncedGetBooks = _.debounce(getBooks, 500);
 
-// array to store reading list
+// Array to store reading list
 var readingList = [];
 
+// Handles when book search query is updated
 function handleValueChange () {
   searchIcon.className = 'circle notch loading icon';
   debouncedGetBooks(this.value);
 }
 
+// Shows results div when search input is focused
 function handleInputFocus () {
-  // hide results div on unfocus
   resultsDiv.style.visibility = 'visible';
 }
+
+// Hides results div when search input is unfocused
 function handleInputUnfocus () {
-  // make results div visible again
   resultsDiv.style.visibility = 'hidden';
 }
 
+// Handles updating the list name when listname input is updated
 function handleListNameChange () {
   listTitle.innerText = this.value + ' Reading List:';
 }
 
+// Handles updating the list description when description input is updated
 function handleListDescriptionChange () {
   listDesc.innerText = this.value;
 }
+
+// Handles when user removes book from list
 function handleBookDeletion (book) {
+  // Checks length of book to decide if submit button should be visible
   if (readingList.length === 1) {
     submitButton.style.visibility = 'hidden';
   }
+
+  // Remove book from reading list array
   var index = readingList.indexOf(book);
   readingList.splice(index, 1);
   var deletedBookSegment = document.getElementsByClassName(
@@ -78,6 +86,7 @@ function handleBookDeletion (book) {
   });
 }
 
+// Handles submitting the list to database when user submits list
 function handleListSubmit () {
   fetch('http://localhost:5000/api/lists', {
     method: 'POST',
@@ -87,25 +96,28 @@ function handleListSubmit () {
       name: listTitle.innerText,
       desc: listDesc.innerText,
       list: readingList
-      // comments: listComments,
     })
   })
     .then(function (res) {
       return res.json();
     })
     .then(function (res) {
-      console.log(res);
+      // Redirect to newly-generated list's dedicated page
       window.location.href = `list/${res._id}`;
     })
     .catch(function (err) {
       console.error(err.message);
+      window.alert('There was an error when submitting your request, please try again later.');
     });
 }
+
+// Handles updating the list when a book is selected to be added to the list
 function handleResultSelect (book) {
-  // add book to reading list
+  // Checks that list doesn't already contain selected book
   if (readingList.includes(book) || isDuplicateBook(book, readingList)) {
     window.alert('The reading list already contains this book!');
   } else if (readingList.length < 10) {
+    // Generates HTML for the newly added book in the list
     readingList.push(book);
     var segment = document.createElement('div');
     segment.className = 'ui segment create-list-segment';
@@ -139,6 +151,8 @@ function handleResultSelect (book) {
 
     var deleteBtn = document.createElement('button');
     deleteBtn.className = 'circular negative ui icon button delete-icon';
+
+    // Adds event listener for book in case user wants to remove it from the list
     deleteBtn.addEventListener('mousedown', function () {
       handleBookDeletion(book);
     });
@@ -168,6 +182,7 @@ function handleResultSelect (book) {
     segment.appendChild(gridDiv);
     listDiv.appendChild(segment);
 
+    // Allow user to submit list now there is at least one book
     if (readingList.length > 0) {
       submitButton.style.visibility = 'visible';
     }
@@ -178,19 +193,22 @@ function handleResultSelect (book) {
   }
 }
 
+// Makes a GET request to Google Books via server-defined GET request
 function getBooks (value) {
+  // Sanitise input
   if (value && value.trim().length > 0) {
     fetch(`http://localhost:5000/search/${value}`, {
       method: 'POST'
     })
       .then((res) => {
+        // Update search icon prompt
         searchIcon.className = 'search icon';
         return res.json();
       })
       .then((books) => {
-        // clear results div
+        // Reset results div
         resultsDiv.innerHTML = '';
-        // populate results div
+        // Populate results div with HTML for each result
         books.map(function (book, index) {
           var bookLink = document.createElement('a');
           bookLink.id = 'book-link';
@@ -239,12 +257,15 @@ function getBooks (value) {
       })
       .catch((err) => {
         console.error(err.message);
+        window.alert('There was an error processing your book query, please try again later.');
       });
   } else {
+    // Reset search icon prompt
     searchIcon.className = 'search icon';
   }
 }
 
+// Helper function to stop same book being added to the list twice by metadata comparison
 function isDuplicateBook (book, readingList) {
   var duplicateCount = 0;
   var threshold = 3;

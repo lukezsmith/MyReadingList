@@ -5,7 +5,7 @@ const ReadingList = require('../../models/ReadingList');
 // Endpoints
 
 // @route   GET api/lists/id
-// @desc    Get a reading list by id
+// @desc    Gets a reading list by id
 // @access  Public
 router.get('/:id', async (req, res) => {
   try {
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // @route   POST api/lists
-// @desc    Create a new reading list
+// @desc    Creates a new reading list
 // @access  Public
 router.post('/', async (req, res) => {
   try {
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
 });
 
 // @route   PATCH api/lists/id
-// @desc    Add new comment to list
+// @desc    Adds new comment to list
 // @access  Public
 router.patch('/:id', async (req, res) => {
   try {
@@ -60,7 +60,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 // @route   GET api/lists
-// @desc    Get ten most-recent lists
+// @desc    Gets ten most-recent lists
 // @access  Public
 router.get('/', async (req, res) => {
   try {

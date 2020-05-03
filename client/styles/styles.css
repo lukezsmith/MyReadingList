@@ -254,6 +254,11 @@ input {
 	background-color: rgb(39, 34, 76) !important;
 }
 
+#fourohfour-div{
+	margin-top: 5%;
+	text-align: center;
+}
+
 @media only screen and (max-width: 767px){
 	.list-segment {
 		margin-left: 3% !important;

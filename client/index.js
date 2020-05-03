@@ -1,8 +1,8 @@
 /* global tns */
 /* global fetch */
 
-var listDiv = document.getElementById('landing-list-div');
-
+// Fetches ten most-recently created lists and populates list div with them
+function getLists () {
 fetch('http://localhost:5000/api/lists')
   .then(function (res) {
     return res.json();
@@ -10,9 +10,9 @@ fetch('http://localhost:5000/api/lists')
   .then(function (lists) {
     console.log(lists);
 
+    // Maps each list to its own html segment
     lists
       .map(function (list) {
-        // listDiv.slick('slickAdd')
         var segment = document.createElement('div');
         segment.className = 'ui segment';
 
@@ -28,7 +28,7 @@ fetch('http://localhost:5000/api/lists')
         var booksRow = document.createElement('div');
         booksRow.className = 'ui row';
 
-        // iterate through number of books in the list and create html elements for each one
+        // Iterates through number of books in the list and creates html elements for each one
         list.list.forEach((book, index) => {
           var bookCol = document.createElement('div');
           bookCol.className = 'column';
@@ -60,12 +60,12 @@ fetch('http://localhost:5000/api/lists')
         gridDiv.appendChild(descRow);
         gridDiv.appendChild(booksRow);
         segment.appendChild(gridDiv);
-        listDiv.appendChild(segment);
+        document.getElementById('landing-list-div').appendChild(segment);
 
         return '';
-      })
-      .join('');
+      });
 
+    // Initialises the carousel container for all list segments
     tns({
       container: '#landing-list-div',
       autoHeight: false,
@@ -79,4 +79,8 @@ fetch('http://localhost:5000/api/lists')
   })
   .catch(function (err) {
     console.error(err.message);
+    window.alert('Unable to get lists, please try again later.');
   });
+}
+
+getLists();

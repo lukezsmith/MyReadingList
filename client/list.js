@@ -1,61 +1,32 @@
 /* global fetch */
 /* global location */
 
-var listId = window.location.pathname.split('/')[2];
-var listDiv = document.getElementById('list-list-div');
-var listName = document.getElementById('list-title');
-var listDesc = document.getElementById('list-desc');
+// Gets the reading list and generates the html for it
+function getList (listId) {
+  var commentSubmitBtn = document.getElementById('comment-submit-btn');
 
-var commentSubmitBtn = document.getElementById('comment-submit-btn');
+  // Adds an event listener for when a new comment is submitted via the submit button
+  commentSubmitBtn.addEventListener('mousedown', function () {
+    var commentValue = document.getElementById('comment-input').value;
+    handleCommentSubmit(window.location.pathname.split('/')[2], commentValue);
+  });
 
-commentSubmitBtn.addEventListener('mousedown', function () {
-  var commentValue = document.getElementById('comment-input').value;
-  handleCommentSubmit(commentValue);
-});
+  // Fetches list from api
 
-function handleCommentSubmit (commentValue) {
-  // check comment value is not empty
-  if (commentValue && commentValue.trim().length > 0) {
-    console.log('valid comment');
-    console.log(commentValue);
-    // update list with new comment
-    fetch(`http://localhost:5000/api/lists/${listId}`, {
-      method: 'PATCH',
-      mode: 'cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        comment: commentValue
-      })
-    })
-      .then(function (res) {
-        return res;
-      })
-      .then(function (res) {
-        location.reload();
-        window.scrollTo(0, 0);
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
-  }
-}
 fetch(`http://localhost:5000/api/lists/${listId}`)
   .then(function (res) {
     return res.json();
   })
   .then(function (list) {
-    console.log(list);
-
     // update list title
-    listName.innerText = list.name;
+    document.getElementById('list-title').innerText = list.name;
 
     // update list description
-    listDesc.innerText = list.desc;
+    document.getElementById('list-desc').innerText = list.desc;
 
-    // map each list to a list item
+    // map each list to a list item and generates the HTML for each one
     list.list
       .map(function (book, index) {
-        // move all of these definitions outside of map loop????? we are redefining them each time
         var segment = document.createElement('div');
         segment.className = 'ui segment list-segment';
 
@@ -98,12 +69,11 @@ fetch(`http://localhost:5000/api/lists/${listId}`)
         gridDiv.appendChild(detailsCol);
 
         segment.appendChild(gridDiv);
-        listDiv.appendChild(segment);
-      })
-      .join('');
+        document.getElementById('list-list-div').appendChild(segment);
+      });
 
     var commentsDiv = document.getElementById('comments-div');
-    // if comments
+    // if comments exist, generate HTML to display them
     if (list.comments.length !== 0) {
        list.comments.map(function (comment, index) {
         var commentDiv = document.createElement('div');
@@ -132,4 +102,36 @@ fetch(`http://localhost:5000/api/lists/${listId}`)
   })
   .catch(function (err) {
     console.error(err.message);
+    window.alert('Unable to get list, please try again later.');
   });
+}
+
+getList(window.location.pathname.split('/')[2]);
+
+// Handles a new comment being submitted
+function handleCommentSubmit (listId, commentValue) {
+  // check comment value is not empty
+  if (commentValue && commentValue.trim().length > 0) {
+    // update list with new comment
+    fetch(`http://localhost:5000/api/lists/${listId}`, {
+      method: 'PATCH',
+      mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        comment: commentValue
+      })
+    })
+      .then(function (res) {
+        return res;
+      })
+      .then(function (res) {
+        // reload page
+        location.reload();
+        window.scrollTo(0, 0);
+      })
+      .catch(function (err) {
+        console.error(err);
+        window.alert('Unable to post new comment, please try again later.');
+      });
+  }
+}

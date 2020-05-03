@@ -44,4 +44,9 @@ app.use('/api/lists', require('./routes/api/lists'));
 // Route for Google Books Api requests
 app.use('/search', require('./routes/api/search'));
 
+// Route for all other erroneous routes
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, '/client/404.html'));
+});
+
 module.exports = app;
