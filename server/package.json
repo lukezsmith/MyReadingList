@@ -23,7 +23,8 @@
 		"express": "^4.17.1",
 		"mongoose": "^5.9.10",
 		"nodemon": "^2.0.3",
-		"semantic-ui": "^2.4.2"
+		"semantic-ui": "^2.4.2",
+		"tiny-slider": "^2.9.2"
 	},
 	"dependencies": {
 		"reload": "^3.0.4"

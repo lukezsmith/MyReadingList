@@ -10,11 +10,15 @@
 
 		<link rel="stylesheet" href="/styles/styles.css" />
 		<link rel="stylesheet" href="/styles/semantic/semantic.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css"
+		/>
 	</head>
 
 	<body>
-		<div class="ui top attached menu">
-			<a class="item" href="/"> MyReadingList</a>
+		<div class="ui top attached large menu">
+			<a id="nav-logo" class="item" href="/"> MyReadingList</a>
 		</div>
 		<div class="ui stackable grid">
 			<div class="six wide column brand-col">
@@ -26,16 +30,29 @@
 				<h1 id="brand-title">MyReadingList</h1>
 				<p>
 					MyReadingList lets you create and view customised reading lists.
+					<br />
+					<br />To view a list that is displayed on this page, click on its
+					title.
+					<br />
+					<br />
+					Alternatively, you can create a new list by clicking the button below:
 				</p>
 
-				<a href="/create.html"><h3>Create your own list</h3></a>
+				<div id="create-list-btn-div">
+					<a href="/create.html"
+						><button class="ui button" id="create-list-btn">
+							Create new list
+						</button></a
+					>
+				</div>
 			</div>
 			<div class="ten wide column list-col">
-				<h3>Recent user-created lists:</h3>
+				<h1>Recent user-created lists:</h1>
 				<div id="landing-list-div"></div>
 			</div>
 		</div>
 		<script src="/reload/reload.js"></script>
-		<script src="/index.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+		<script type="text/javascript" src="/index.js"></script>
 	</body>
 </html>

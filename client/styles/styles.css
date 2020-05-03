@@ -46,9 +46,13 @@ input {
 	color: black !important;
 }
 
-#landing-list-title {
+.landing-list-title {
 	color: black !important;
 	font-weight: bold;
+	text-decoration: underline;
+	font-size: large;
+}
+.landing-list-title:hover {
 	text-decoration: underline;
 }
 
@@ -78,7 +82,8 @@ input {
 }
 
 #index-col {
-	background-color: lightgrey;
+	background-color: rgb(82, 87, 107);
+	color: white;
 	text-align: center;
 	align-self: center;
 	vertical-align: middle;
@@ -92,7 +97,8 @@ input {
 }
 
 .list-image {
-	width: 75%;
+	width: 75% !important;
+	padding-bottom: 20%;
 }
 
 .book-title {
@@ -131,12 +137,14 @@ input {
 .results-segment {
 	margin-top: 0 !important;
 	margin-bottom: 0 !important;
+	color: black !important;
 }
 
 #list-submit-btn {
 	visibility: hidden;
 	background-color: rgb(82, 87, 107);
 	color: white;
+	margin-top: 2%;
 }
 
 #list-submit-btn:hover {
@@ -172,4 +180,47 @@ input {
 	align-self: center;
 	text-align: center;
 	padding-bottom: 2%;
+}
+
+.tns-nav > [aria-controls] {
+	width: 9px;
+	height: 9px;
+	padding: 0;
+	margin: 0 5px;
+	border-radius: 50%;
+	background: #ddd;
+	border: 0;
+}
+
+.tns-nav > .tns-nav-active {
+	background: #999;
+}
+
+.tns-controls [aria-controls] {
+	font-size: small;
+	margin: 3% 1%;
+	padding: 0 1em;
+	height: 2.5em;
+	color: white;
+	background: rgb(82, 87, 107);
+	border-radius: 10%;
+	border: 0;
+}
+.tns-controls [aria-controls]:hover {
+	background-color: rgb(39, 34, 76) !important;
+}
+
+#create-list-btn-div {
+	margin-top: 5%;
+	text-align: center;
+}
+
+#create-list-btn {
+	color: white;
+	background-color: rgb(82, 87, 107);
+	font-size: medium;
+}
+
+#create-list-btn:hover {
+	background-color: rgb(39, 34, 76) !important;
 }

@@ -52,7 +52,9 @@ function handleListDescriptionChange() {
 	listDesc.innerText = this.value;
 }
 function handleBookDeletion(book) {
-	submitButton.style.visibility = 'hidden';
+	if (readingList.length === 1) {
+		submitButton.style.visibility = 'hidden';
+	}
 	var index = readingList.indexOf(book);
 	readingList.splice(index, 1);
 	var deletedBookSegment = document.getElementsByClassName(
@@ -97,10 +99,9 @@ function handleListSubmit() {
 }
 function handleResultSelect(book) {
 	//add book to reading list
-
 	if (readingList.includes(book) || isDuplicateBook(book, readingList)) {
 		window.alert('The reading list already contains this book!');
-	} else if (readingList.length < 5) {
+	} else if (readingList.length < 10) {
 		readingList.push(book);
 		var segment = document.createElement('div');
 		segment.className = 'ui segment create-list-segment';
@@ -166,12 +167,12 @@ function handleResultSelect(book) {
 		segment.appendChild(gridDiv);
 		listDiv.appendChild(segment);
 
-		if (readingList.length === 5) {
+		if (readingList.length > 0) {
 			submitButton.style.visibility = 'visible';
 		}
 	} else {
 		window.alert(
-			'You have already added five books to your list, remove one to add this book!'
+			'You have already added ten books to your list, remove one to add this book!'
 		);
 	}
 }
@@ -258,9 +259,6 @@ function isDuplicateBook(book, readingList) {
 		}
 
 		if (existingBook.authors === book.authors) {
-			console.log('author duplicate!!!!!!');
-			console.log('old book: ', existingBook.authors);
-			console.log('newbook: ', book.authors);
 			duplicateCount += 1;
 		}
 

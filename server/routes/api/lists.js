@@ -59,7 +59,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 // @route   GET api/lists
-// @desc    Get all reading lists
+// @desc    Get ten most-recent lists
 // @access  Public
 router.get('/', async (req, res) => {
 	try {
@@ -67,7 +67,7 @@ router.get('/', async (req, res) => {
 		// 	console.log(listObjects.list);
 		// 	// listObjects = listObjects.map((listObject.list) => list.toObject());
 		// 	res.json(lists);
-		const lists = await ReadingList.find().sort('-date');
+		const lists = await ReadingList.find().limit(10).sort('-date');
 		res.json(lists);
 
 		// });

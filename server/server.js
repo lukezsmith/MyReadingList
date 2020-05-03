@@ -19,7 +19,7 @@ app.use(
 	})
 );
 app.use(express.json({ extended: false }));
-app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, '/../client')));
 
 // Set port to host server
 const PORT = process.env.PORT || 5000;
@@ -31,17 +31,17 @@ const PORT = process.env.PORT || 5000;
 // Route for serving landing page (index.html)
 
 app.get('/', function (req, res) {
-	res.sendFile(path.join(__dirname + '/client/index.html'));
+	res.sendFile(path.join(__dirname + '/../client/index.html'));
 });
 
 // Route  for serving specific reading list
 app.get('/list/:id', function (req, res) {
-	res.sendFile(path.join(__dirname + '/client/list.html'));
+	res.sendFile(path.join(__dirname + '/../client/list.html'));
 });
 
 // Route  for creating new reading list
 app.get('/create', function (req, res) {
-	res.sendFile(path.join(__dirname + '/client/create.html'));
+	res.sendFile(path.join(__dirname + '/../client/create.html'));
 });
 
 // Api Routes

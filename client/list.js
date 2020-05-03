@@ -126,11 +126,6 @@ fetch(`http://localhost:5000/api/lists/${listId}`)
 
 				commentsDiv.appendChild(commentDiv);
 			});
-		} else {
-			// console.log('No comments found');
-			// var noComments = document.createElement('p');
-			// noComments.innerText = 'No comments';
-			// commentsDiv.appendChild(noComments);
 		}
 	})
 	.catch(function (err) {
