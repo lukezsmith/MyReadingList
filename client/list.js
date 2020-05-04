@@ -15,6 +15,11 @@ function getList (listId) {
 
 fetch(`http://localhost:5000/api/lists/${listId}`)
   .then(function (res) {
+    console.log(res);
+    if (res.status === 404) {
+      console.log('true');
+      res.json().then(location.href = '404.html');
+    }
     return res.json();
   })
   .then(function (list) {
@@ -73,8 +78,11 @@ fetch(`http://localhost:5000/api/lists/${listId}`)
       });
 
     var commentsDiv = document.getElementById('comments-div');
+    document.getElementById('comments-input-div').style.visibility = 'visible';
     // if comments exist, generate HTML to display them
     if (list.comments.length !== 0) {
+      commentsDiv.style.visibility = 'visible';
+
        list.comments.map(function (comment, index) {
         var commentDiv = document.createElement('div');
         commentDiv.className = 'comment';
@@ -103,6 +111,8 @@ fetch(`http://localhost:5000/api/lists/${listId}`)
   .catch(function (err) {
     console.error(err.message);
     window.alert('Unable to get list, please try again later.');
+    console.log(window.location);
+    window.location.href = window.location.origin + '/404.html';
   });
 }
 

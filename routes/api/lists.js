@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const router = express.Router();
 const ReadingList = require('../../models/ReadingList');
 
@@ -8,18 +9,20 @@ const ReadingList = require('../../models/ReadingList');
 // @desc    Gets a reading list by id
 // @access  Public
 router.get('/:id', async (req, res) => {
+  console.log('yes');
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).send('Bad Request');
+  } else {
   try {
     const list = await ReadingList.findById(req.params.id);
     if (!list) {
       return res.status(400).send('List not found');
     }
-    res.json(list);
+    res.status(200).json(list);
   } catch (err) {
-    if (err.kind === 'ObjectId') {
-      return res.status(400).send('List not found');
+    console.log(err);
+      res.status(500).json('Server error');
     }
-    console.error(err.message);
-    res.status(500).send('Server Error');
   }
 });
 
@@ -37,9 +40,9 @@ router.post('/', async (req, res) => {
     });
 
     await readingList.save();
-    res.send(readingList);
+    res.status(200).send(readingList);
   } catch (err) {
-    console.error(err.message);
+    res.status(400).send('Bad request');
   }
 });
 
@@ -53,9 +56,9 @@ router.patch('/:id', async (req, res) => {
     const readingList = await ReadingList.findById(listId);
     readingList.comments.push(comment);
     await readingList.save();
-    res.send('comment added');
+    res.status(200).send('Comment successully added to list');
   } catch (err) {
-    console.error(err.message);
+    res.status(400).send('Bad request');
   }
 });
 
@@ -65,10 +68,10 @@ router.patch('/:id', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const lists = await ReadingList.find().limit(10).sort('-date');
-    res.json(lists);
+    res.status(200).json(lists);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Server Error');
+    console.error(err);
+    res.status(400).send('Bad request');
   }
 });
 

@@ -45,7 +45,7 @@ app.use('/api/lists', require('./routes/api/lists'));
 app.use('/search', require('./routes/api/search'));
 
 // Route for all other erroneous routes
-app.get('*', function (req, res) {
+app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '/client/404.html'));
 });
 

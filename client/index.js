@@ -8,8 +8,13 @@ fetch('http://localhost:5000/api/lists')
     return res.json();
   })
   .then(function (lists) {
-    console.log(lists);
-
+    if (lists.length === 0) {
+      var brandCol = document.getElementById('brand-col');
+      brandCol.className = 'sixteen wide column brand-col';
+      brandCol.style.textAlign = 'center';
+      brandCol.setAttribute('style', 'padding-left: 0 !important; text-align: center;');
+      document.getElementById('list-col').remove();
+    } else {
     // Maps each list to its own html segment
     lists
       .map(function (list) {
@@ -76,7 +81,8 @@ fetch('http://localhost:5000/api/lists')
       navPosition: 'bottom',
       arrowKeys: true
     });
-  })
+  }
+})
   .catch(function (err) {
     console.error(err.message);
     window.alert('Unable to get lists, please try again later.');
