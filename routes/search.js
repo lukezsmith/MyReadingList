@@ -3,7 +3,7 @@ const router = express.Router();
 const config = require('config');
 const googleBooksApiKey = config.get('googleBooksApiKey');
 const axios = require('axios');
-const Book = require('../../Book');
+const Book = require('../Book');
 
 // Google Books API endpoint for getting list of volumes
 const googleBooksUrl = 'https://www.googleapis.com/books/v1/volumes?q=';

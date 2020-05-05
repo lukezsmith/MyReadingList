@@ -1,15 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
-const ReadingList = require('../../models/ReadingList');
+const ReadingList = require('../models/ReadingList');
 
 // Endpoints
 
-// @route   GET api/lists/id
+// @route   GET /lists/id
 // @desc    Gets a reading list by id
 // @access  Public
 router.get('/:id', async (req, res) => {
-  console.log('yes');
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).send('Bad Request');
   } else {
@@ -21,12 +20,12 @@ router.get('/:id', async (req, res) => {
     res.status(200).json(list);
   } catch (err) {
     console.log(err);
-      res.status(500).json('Server error');
+      res.status(400).json('Bad Request');
     }
   }
 });
 
-// @route   POST api/lists
+// @route   POST /lists
 // @desc    Creates a new reading list
 // @access  Public
 router.post('/', async (req, res) => {
@@ -46,7 +45,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// @route   PATCH api/lists/id
+// @route   PATCH /lists/id
 // @desc    Adds new comment to list
 // @access  Public
 router.patch('/:id', async (req, res) => {
@@ -62,7 +61,7 @@ router.patch('/:id', async (req, res) => {
   }
 });
 
-// @route   GET api/lists
+// @route   GET /lists
 // @desc    Gets ten most-recent lists
 // @access  Public
 router.get('/', async (req, res) => {

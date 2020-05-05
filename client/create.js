@@ -88,7 +88,7 @@ function handleBookDeletion (book) {
 
 // Handles submitting the list to database when user submits list
 function handleListSubmit () {
-  fetch('http://localhost:5000/api/lists', {
+  fetch('http://localhost:5000/lists', {
     method: 'POST',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },

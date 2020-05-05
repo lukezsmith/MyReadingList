@@ -41,10 +41,10 @@ if (await connectDB()) {
   // API Routes
 
   // Route for reading list-related routes
-  app.use('/api/lists', require('./routes/api/lists'));
+  app.use('/lists', require('./routes/lists'));
 
   // Route for Google Books Api requests
-  app.use('/search', require('./routes/api/search'));
+  app.use('/search', require('./routes/search'));
 
   // Route for all other erroneous routes
   app.get('*', function (req, res) {
