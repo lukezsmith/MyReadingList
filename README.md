@@ -1,33 +1,33 @@
 # MyReadingList
 
 ## Table of Contents
-###1 - Installation & Setup:
+### 1 - Installation & Setup:
 * 1.1 - Downloading MyReadingList
 * 1.2 - Installation
 * 1.3 - Running MyReadingList
 
-###2 - MyReadingList API:
+### 2 - MyReadingList API:
 * 2.1 - Endpoints
 * 2.2 - JSON Response Example
 
-###3 - Google Books External API:
+### 3 - Google Books External API:
 * 3.1 - Endpoints
 
-###4 - Hosted Example
+### 4 - Hosted Example
 
-##Installation & Setup
-###1.1 - Downloading MyReadingList:
+## Installation & Setup
+### 1.1 - Downloading MyReadingList:
 
 Clone the repository by running `git clone https://github.com/lukezsmith/MyReadingList.git` in terminal or [https://github.com/lukezsmith/MyReadingList/archive/master.zip](download the zip)
 
-###1.2 - Installation:
+### 1.2 - Installation:
 Install dependencies by running `npm install` in terminal
 
-###1.3 - Running MyReadingList:
+### 1.3 - Running MyReadingList:
 Run MyReadingList by running `npm start` in terminal
 
-##MyReadingList API
-###2.1 - Endpoints
+## MyReadingList API
+### 2.1 - Endpoints
 
 [Full Postman Documentation](https://documenter.getpostman.com/view/8280766/SzmcZdy7?version=latest)
 
@@ -70,7 +70,7 @@ Run MyReadingList by running `npm start` in terminal
 
     * Request must include the following: `comment`
 
-###2.2 - JSON Response Example
+### 2.2 - JSON Response Example
 Request: `GET http://localhost:5000/lists/5eaf6b599a236024347a6df5` 
 
 Response: 
