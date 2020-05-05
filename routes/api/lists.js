@@ -16,7 +16,7 @@ router.get('/:id', async (req, res) => {
   try {
     const list = await ReadingList.findById(req.params.id);
     if (!list) {
-      return res.status(400).send('List not found');
+      return res.status(404).send('List not found');
     }
     res.status(200).json(list);
   } catch (err) {

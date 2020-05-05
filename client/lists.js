@@ -1,13 +1,24 @@
 /* global tns */
 /* global fetch */
 
+function serverError () {
+  window.alert('HTTP 500 Internal Error - Could not connect to the server, please try again later.');
+}
+
+function fetchWithTimeout (url, timeout = 7000) {
+  return Promise.race([
+      fetch(url),
+      new Promise((resolve, reject) =>
+          setTimeout(() => reject(new Error('timeout')), timeout)
+      )
+  ]);
+}
+
 // Fetches ten most-recently created lists and populates list div with them
 function getLists () {
-fetch('http://localhost:5000/api/lists')
-  .then(function (res) {
-    return res.json();
-  })
-  .then(function (lists) {
+fetchWithTimeout('http://localhost:5000/api/lists', 5000)
+  .then(res => res.json())
+  .then((lists) => {
     if (lists.length === 0) {
       var brandCol = document.getElementById('brand-col');
       brandCol.className = 'sixteen wide column brand-col';
@@ -66,8 +77,6 @@ fetch('http://localhost:5000/api/lists')
         gridDiv.appendChild(booksRow);
         segment.appendChild(gridDiv);
         document.getElementById('landing-list-div').appendChild(segment);
-
-        return '';
       });
 
     // Initialises the carousel container for all list segments
@@ -82,11 +91,10 @@ fetch('http://localhost:5000/api/lists')
       arrowKeys: true
     });
   }
-})
-  .catch(function (err) {
-    console.error(err.message);
-    window.alert('Unable to get lists, please try again later.');
-  });
+}, () => {
+  // Error detected
+  serverError();
+});
 }
 
 getLists();

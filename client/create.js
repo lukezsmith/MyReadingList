@@ -107,7 +107,7 @@ function handleListSubmit () {
     })
     .catch(function (err) {
       console.error(err.message);
-      window.alert('There was an error when submitting your request, please try again later.');
+      window.alert('HTTP 500 Server Error - There was an error when submitting your request, please try again later.');
     });
 }
 
@@ -257,7 +257,7 @@ function getBooks (value) {
       })
       .catch((err) => {
         console.error(err.message);
-        window.alert('There was an error processing your book query, please try again later.');
+        window.alert('HTTP 500 Server Error - There was an error processing your book query, please try again later.');
       });
   } else {
     // Reset search icon prompt
