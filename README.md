@@ -12,9 +12,8 @@
 
 ###3 - Google Books External API:
 * 3.1 - Endpoints
-* 3.2 - JSON Response Example
 
-###3 - Hosted Example
+###4 - Hosted Example
 
 ##Installation & Setup
 ###1.1 - Downloading MyReadingList:
@@ -29,6 +28,8 @@ Run MyReadingList by running `npm start` in terminal
 
 ##MyReadingList API
 ###2.1 - Endpoints
+
+[Full Postman Documentation](https://documenter.getpostman.com/view/8280766/SzmcZdy7?version=latest)
 
 * **Get Ten Most-recent Reading Lists**: `GET /lists`
     * `Success: HTTP 200 (OK)`
@@ -69,7 +70,10 @@ Run MyReadingList by running `npm start` in terminal
 
     * Request must include the following: `comment`
 
-###2.2 - JSON Response Example`json
+###2.2 - JSON Response Example
+Request: `GET http://localhost:5000/lists/5eaf6b599a236024347a6df5` 
+
+Response: 
 
     "name": "Microsoft vs Apple Reading List:",
     "date": "2020-05-04T01:08:06.239Z",
@@ -122,3 +126,16 @@ Run MyReadingList by running `npm start` in terminal
     ],
     "__v": 1
 
+## Google Books External API:
+### 3.1 - Endpoints
+MyReadingList utilises Google's Books API to find books to add to each reading list. A wrapper was created for querying Google Books API. This wrapper can be found in `/routes/search.js`.
+
+
+The Google Books API endpoint used in MyReadingList is:
+`https://www.googleapis.com/books/v1/volumes?q=`
+as well as using the `maxResults=40` and `printType=books` parameters to filter the results in a more relevant way. 
+An API key is also used in the query which can be found/changed in `/config/default.json`.
+
+
+## Hosted Example
+A hosted example of MyReadingList can be found at [LINK](link)
