@@ -26,6 +26,6 @@ const ReadingListSchema = new mongoose.Schema({
   comments: [String]
 });
 
-const ReadingList = mongoose.model('readinglist', ReadingListSchema);
+const ReadingList = mongoose.model('reading list', ReadingListSchema);
 
 module.exports = ReadingList;
