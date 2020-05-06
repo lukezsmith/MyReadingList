@@ -2,11 +2,18 @@
   "name": "prog_web_assignment_vanilla",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "12.16.x"
+  },
   "main": "server.js",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "start": "nodemon server",
     "pretest": "npx eslint -c .eslintrc.js server.js app.js Book.js ./models/ReadingList.js ./config/db.js ./client/lists.js ./client/create.js ./client/list.js",
     "test": "jest "
+  },
+  "resolutions": {
+    "graceful-fs": "4.2.3"
   },
   "repository": {
     "type": "git",
