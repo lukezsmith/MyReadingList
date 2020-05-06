@@ -122,11 +122,11 @@ router.post('/:query', async (req, res) => {
           }
         }
         // Send search results
-        res.json(bookArray);
+        res.status(200).json(bookArray);
       });
   } catch (err) {
     console.error(err.message);
-    // todo
+    res.status(400).json('Bad Request');
   }
 });
 module.exports = router;

@@ -163,7 +163,7 @@ function handleCommentSubmit (listId, commentValue) {
       })
       .catch(function (err) {
         console.error(err);
-        window.alert('Unable to post new comment, please try again later.');
+        window.alert('HTTP 400 Bad Request - Unable to post new comment, please try again later.');
       });
   }
 }

@@ -90,6 +90,21 @@ fetchWithTimeout('http://localhost:5000/lists', 5000)
       navPosition: 'bottom',
       arrowKeys: true
     });
+
+    // Remove aria-label on carousel for HTML validator
+    var tnsNav = document.getElementsByClassName('tns-nav');
+    for (var j = 0; j < tnsNav.length; j++) {
+      tnsNav[j].attributes.removeNamedItem('aria-label');
+    }
+    var tnsControls = document.getElementsByClassName('tns-controls');
+    for (var k = 0; k < tnsControls.length; k++) {
+      tnsControls[k].attributes.removeNamedItem('aria-label');
+    }
+
+    var buttons = document.getElementsByTagName('button');
+    for (var i = 0; i < buttons.length; i++) {
+      if (buttons[i].hasAttribute('style')) { buttons[i].attributes.removeNamedItem('aria-label'); }
+    }
   }
 }, () => {
   // Error detected

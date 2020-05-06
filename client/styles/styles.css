@@ -327,7 +327,7 @@ body > div.ui.stackable.grid > div.ten.wide.column.list-col{
 	width: 75% !important
 }
 
-#book-link > div > div > div.ten.wide.column > div > h4{
+.book-link > div > div > div.ten.wide.column > div > h4{
 	font-size: small
 }
 

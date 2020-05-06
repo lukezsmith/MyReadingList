@@ -77,7 +77,7 @@ function handleBookDeletion (book) {
   // update indices for reading list
 
   // iterate through each book in list and check if their segment index matches their index in the reading list
-  var segmentIndices = document.querySelectorAll('#index-text');
+  var segmentIndices = document.querySelectorAll('.index-text');
   readingList.forEach(function (book, index) {
     if (index + 1 !== segmentIndices[index].innerText) {
       // update  with correct (array+1) index
@@ -107,7 +107,7 @@ function handleListSubmit () {
     })
     .catch(function (err) {
       console.error(err.message);
-      window.alert('HTTP 500 Server Error - There was an error when submitting your request, please try again later.');
+      window.alert('HTTP 400 Bad Request - There was an error when submitting your request, please try again later.');
     });
 }
 
@@ -136,7 +136,7 @@ function handleResultSelect (book) {
     var indexCol = document.createElement('div');
     indexCol.className = 'one wide column index-col';
     var indexText = document.createElement('h2');
-    indexText.id = 'index-text';
+    indexText.className = 'index-text';
 
     var imageCol = document.createElement('div');
     imageCol.className = 'four wide column image-col';
@@ -211,7 +211,7 @@ function getBooks (value) {
         // Populate results div with HTML for each result
         books.map(function (book, index) {
           var bookLink = document.createElement('a');
-          bookLink.id = 'book-link';
+          bookLink.className = 'book-link';
           bookLink.href = '';
           bookLink.addEventListener('mousedown', function () {
             handleResultSelect(book);
@@ -257,7 +257,7 @@ function getBooks (value) {
       })
       .catch((err) => {
         console.error(err.message);
-        window.alert('HTTP 500 Server Error - There was an error processing your book query, please try again later.');
+        window.alert('HTTP 400 Bad Request - There was an error processing your book query, please try again later.');
       });
   } else {
     // Reset search icon prompt

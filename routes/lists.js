@@ -19,7 +19,7 @@ router.get('/:id', async (req, res) => {
     }
     res.status(200).json(list);
   } catch (err) {
-    console.log(err);
+    console.error(err);
       res.status(400).json('Bad Request');
     }
   }
