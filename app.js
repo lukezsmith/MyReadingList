@@ -107,7 +107,7 @@ app.get('/create', function (req, res) {
   res.sendFile(path.join(__dirname, '/client/create.html'));
 });
 
-// API Routes
+// /lists/
 
 // @route   GET /lists/id
 // @desc    Gets a reading list by id
@@ -184,9 +184,9 @@ app.get('/lists', async (req, res) => {
   }
 });
 
-// Endpoints
+// /search/
 
-// @route   POST book query to get books from Google Books Api
+// @route   POST /search/:id
 // @desc    Gets a list of books from Google Books API that the user can add to a reading list
 // @access  Private
 app.post('/search/:query', async (req, res) => {
