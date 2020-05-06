@@ -12,6 +12,7 @@
 
 ### 3 - Google Books External API:
 * 3.1 - Endpoints
+* 3.2 - JSON Response Example
 
 ### 4 - Hosted Example
 
@@ -32,17 +33,17 @@ Run MyReadingList by running `npm start` in terminal
 [Full Postman Documentation](https://documenter.getpostman.com/view/8280766/SzmcZdy7?version=latest)
 
 * **Get Ten Most-recent Reading Lists**: `GET /lists`
-    * `Success: HTTP 200 (OK)`
-    * `Failure: HTTP 400 (Bad Request)`
+    * `Success: HTTP 200 (OK)` - Returns JSON Object
+    * `Failure: HTTP 400 (Bad Request)` - Returns Text: "Bad Request"
     * This endpoint handles a GET request for requesting a list of reading lists. 
 
     * It returns list of the ten most-recently created reading lists.
 
 
 * **Get Specific Reading List**: `GET /lists/:id`
-    * `Success: HTTP 200 (OK)`
-    * `Failure: HTTP 400 (Bad Request)`
-    * `Failure: HTTP 404 (Not Found)`
+    * `Success: HTTP 200 (OK)` - Returns JSON Object
+    * `Failure: HTTP 400 (Bad Request)` - Returns Text: "Bad Request"
+    * `Failure: HTTP 404 (Not Found)` - Returns Text: "Not Found"
 
     * This endpoint handles a GET request for requesting a specific reading list by its id. 
 
@@ -50,8 +51,8 @@ Run MyReadingList by running `npm start` in terminal
 
 
 * **Create New Reading List**: `POST /lists/`
-    * `Success: HTTP 200 (OK)`
-    * `Failure: HTTP 400 (Bad Request)`
+    * `Success: HTTP 200 (OK)` - Returns JSON Object
+    * `Failure: HTTP 400 (Bad Request)` - Returns Text: "Bad Request"
 
     * This endpoint handles a POST request for creating a new reading list. 
 
@@ -61,8 +62,8 @@ Run MyReadingList by running `npm start` in terminal
 
 
 * **Add New Comment to Existing Reading List**: `PATCH /lists/id`
-    * `Success: HTTP 200 (OK)`
-    * `Failure: HTTP 400 (Bad Request)`
+    * `Success: HTTP 200 (OK)` - Returns JSON Object
+    * `Failure: HTTP 400 (Bad Request)` - Returns Text: "Bad Request"
 
     * This endpoint handles a PATCH request for adding a new comment to an existing reading list. 
 
@@ -136,6 +137,63 @@ The Google Books API endpoint used in MyReadingList is:
 as well as using the `maxResults=40` and `printType=books` parameters to filter the results in a more relevant way. 
 An API key is also used in the query which can be found/changed in `/config/default.json`.
 
+* **Search Google Books API with query**: `GET /lists`
+    * `Success: HTTP 200 (OK)` - Returns JSON Object
+    * `Failure: HTTP 400 (Bad Request)` - Returns Text: "Bad Request"
+
+    * This endpoint handles a POST request for querying the Google Books API.
+
+    * Forms the endpoint URL for a GET request to the Google Books API. Returns 40 most relevant books with regards to the supplied query parameter.  
+
+    * Request must include the following: `query`
+
+### 3.2 - JSON Response Example
+Request: `POST http://localhost:5000/search/mathematics` 
+
+Response: 
+
+[
+    {
+        "id": "_kYBqLc5QoQC",
+        "title": "What is Mathematics?: An Elementary Approach to Ideas and Methods",
+        "authors": "Courant Institute of Mathematical Sciences Richard Courant, Richard Courant, Herbert Robbins, Professor of Mathematics Herbert Robbins and Ian Stewart",
+        "publisherName": "Oxford University Press, USA",
+        "publishedDate": "1996",
+        "imageUrl": "http://books.google.com/books/content?id=_kYBqLc5QoQC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+    },
+    {
+        "id": "R-qgdx2A5b0C",
+        "title": "What is Mathematics, Really?",
+        "authors": "Reuben Hersh",
+        "publisherName": "Oxford University Press, USA",
+        "publishedDate": "1999",
+        "imageUrl": "http://books.google.com/books/content?id=R-qgdx2A5b0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+    },
+    {
+        "id": "kC25qnVj4doC",
+        "title": "Mathematics",
+        "authors": "Timothy Gowers",
+        "publisherName": "Sterling Publishing Company, Inc.",
+        "publishedDate": "2010-01",
+        "imageUrl": "http://books.google.com/books/content?id=kC25qnVj4doC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+    },
+    {
+        "id": "ZOfUsvemJDMC",
+        "title": "The Princeton Companion to Mathematics",
+        "authors": "Timothy Gowers, June Barrow-Green and Imre Leader",
+        "publisherName": "Princeton University Press",
+        "publishedDate": "2010-07-18",
+        "imageUrl": "http://books.google.com/books/content?id=ZOfUsvemJDMC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+    },
+    {
+        "id": "JjQrpYswtYEC",
+        "title": "Philosophy of Mathematics: Selected Readings",
+        "authors": "Paul Benacerraf, and Hilary Putnam",
+        "publisherName": "Cambridge University Press",
+        "publishedDate": "1983",
+        "imageUrl": "http://books.google.com/books/content?id=JjQrpYswtYEC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
+    }
+]
 
 ## Hosted Example
 A hosted example of MyReadingList can be found at [LINK](link)
