@@ -109,9 +109,6 @@ app.get('/create', function (req, res) {
 
 // API Routes
 
-// Route for reading list-related routes
-// app.use('/lists', require('./routes/lists'));
-
 // @route   GET /lists/id
 // @desc    Gets a reading list by id
 // @access  Public
@@ -122,7 +119,7 @@ app.get('/lists/:id', async (req, res) => {
   try {
     var readingList = await ReadingList.findById(req.params.id);
     if (!readingList) {
-      return res.status(404).send('List not found');
+      return res.status(404).send('Not Found');
       // return res.status(209).json();
     }
     res.status(200).json(readingList);
@@ -154,7 +151,7 @@ app.post('/lists', async (req, res) => {
     res.status(200).send(newList);
   }
   } catch (err) {
-    res.status(400).send('Bad request');
+    res.status(400).send('Bad Request');
   }
 });
 
@@ -186,9 +183,6 @@ app.get('/lists', async (req, res) => {
     res.status(400).send('Bad request');
   }
 });
-
-// Route for Google Books Api requests
-// app.use('/search', require('./routes/search'));
 
 // Endpoints
 

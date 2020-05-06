@@ -2,7 +2,8 @@
 /* global fetch */
 
 function serverError () {
-  window.alert('HTTP 500 Internal Error - Could not connect to the server, please try again later.');
+  // window.alert('HTTP 500 Internal Error - Could not connect to the server, please try again later.');
+  window.location.href = window.location.origin + '/maintenance.html';
 }
 
 function fetchWithTimeout (url, timeout = 7000) {
