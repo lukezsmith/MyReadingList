@@ -61,7 +61,7 @@ Run MyReadingList by running `npm start` in terminal
     * Request must include the following: `name`, `description`, `list`, `date` and `comments`
 
 
-* **Add New Comment to Existing Reading List**: `PATCH /lists/id`
+* **Add New Comment to Existing Reading List**: `PATCH /lists/:id`
     * `Success: HTTP 200 (OK)` - Returns JSON Object
     * `Failure: HTTP 400 (Bad Request)` - Returns Text: "Bad Request"
 
@@ -137,7 +137,7 @@ The Google Books API endpoint used in MyReadingList is:
 as well as using the `maxResults=40` and `printType=books` parameters to filter the results in a more relevant way. 
 An API key is also used in the query which can be found/changed in `/config/default.json`.
 
-* **Search Google Books API with query**: `GET /lists`
+* **Search Google Books API with query**: `POST /search/:query`
     * `Success: HTTP 200 (OK)` - Returns JSON Object
     * `Failure: HTTP 400 (Bad Request)` - Returns Text: "Bad Request"
 
@@ -151,7 +151,7 @@ An API key is also used in the query which can be found/changed in `/config/defa
 Request: `POST http://localhost:5000/search/mathematics` 
 
 Response: 
-
+```json
 [
     {
         "id": "_kYBqLc5QoQC",
@@ -194,6 +194,7 @@ Response:
         "imageUrl": "http://books.google.com/books/content?id=JjQrpYswtYEC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api"
     }
 ]
+```
 
 ## Hosted Example
 A hosted example of MyReadingList can be found at [LINK](link)
