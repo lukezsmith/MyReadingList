@@ -17,7 +17,9 @@ var readingListIds = [];
 
 describe('Test the MyReadingList API', () => {
     beforeAll(async () => {
-        // await testReadingList.remove({});
+        // Override default max Timeout
+        jest.setTimeout(30000);
+
         // add a reading list for GET/lists/:id test
 
         var testBook1 = {
@@ -73,6 +75,7 @@ describe('Test the MyReadingList API', () => {
         db.disconnectDB();
     });
 
+    // /lists/ Tests
     test('GET /lists/ Success', (done) => {
       return request(app)
         .get('/lists')
@@ -212,30 +215,45 @@ describe('Test the MyReadingList API', () => {
             .end(done);
         });
 
-    // patch 200
-    // test('PATCH /lists/:id Success', (done) => {
-    //     const comment = 'Test comment';
+    test('PATCH /lists/:id Success', (done) => {
+        const comment = 'Test comment 1';
+        return request(app)
+            .patch('/lists/5eb2dd972cacba29124ee5e6')
+            .send(comment)
+            .expect(200)
+            .end(function (err, res) {
+                if (err) throw err;
+                readingListIds.push(res.body._id);
+                done();
+            });
+    });
 
-    //     return request(app)
-    //         .patch('/lists/5eb2dd972cacba29124ee5e6')
-    //         .send(comment)
-    //         .expect(200)
-    //         .end(function (err, res) {
-    //             if (err) throw err;
-    //             readingListIds.push(res.body._id);
-    //             done();
-    //         });
-    //     });
+    test('PATCH /lists/:id Success - returns JSON', (done) => {
+        const comment = 'Test comment 2';
+        return request(app)
+            .patch('/lists/5eb2dd972cacba29124ee5e6')
+            .send(comment)
+            .expect('Content-Type', /json/)
+            .end(function (err, res) {
+                if (err) throw err;
+                readingListIds.push(res.body._id);
+                done();
+            });
+        });
 
-    // 200 returns json
+    // /search/ Tests
 
-    // patch 400
+    test('POST /search/:query Success', (done) => {
+        return request(app)
+          .post('/search/mathematics')
+          .expect(200)
+          .end(done);
+      });
 
-    // 400 returns text
-
-    // patchj 404
-
-    // 400 returns text
-
-    // ALL /SEARCH tests
+    test('POST /search/:query Success - returns JSON', (done) => {
+    return request(app)
+        .post('/search/mathematics')
+        .expect('Content-Type', /json/)
+        .end(done);
+    });
   });

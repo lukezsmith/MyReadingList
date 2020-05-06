@@ -164,11 +164,11 @@ app.post('/lists', async (req, res) => {
 app.patch('/lists/:id', async (req, res) => {
   try {
     const { comment } = req.body;
-    const listId = req.params.id;
-    var readingList = await ReadingList.findById(listId);
-    readingList.comments.push(comment);
-    await readingList.save();
-    res.status(200).send('Comment successully added to list');
+      const listId = req.params.id;
+      var readingList = await ReadingList.findById(listId);
+      readingList.comments.push(comment);
+      await readingList.save();
+      res.status(200).send(readingList);
   } catch (err) {
     res.status(400).send('Bad request');
   }
