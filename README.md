@@ -197,4 +197,4 @@ Response:
 ```
 
 ## Hosted Example
-A hosted example of MyReadingList can be found at [LINK](link)
+A hosted example of MyReadingList can be found at [https://morning-tundra-74810.herokuapp.com/](https://morning-tundra-74810.herokuapp.com/)

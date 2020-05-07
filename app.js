@@ -7,7 +7,6 @@ const axios = require('axios');
 
 // Reading list db mongoose schema model
 const ReadingList = require('./models/ReadingList');
-// const readingList = ReadingList('reading list');
 
 // Book object class for each book returned from Google Books Query
 const Book = require('./Book');
@@ -20,10 +19,6 @@ const googleBooksUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
 
 // Creates instance of an express server
 var app = express();
-
-// // Connect to mongoDB database
-// var connectDB = require('./config/db');
-// connectDB();
 
 // Initialise middleware
 app.use(express.json({ extended: false }));
@@ -188,7 +183,7 @@ app.get('/lists', async (req, res) => {
 
 // @route   POST /search/:id
 // @desc    Gets a list of books from Google Books API that the user can add to a reading list
-// @access  Private
+// @access  Public
 app.post('/search/:query', async (req, res) => {
   var bookResLimit = 5;
   var bookArray = [];

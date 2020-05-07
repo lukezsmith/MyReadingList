@@ -88,7 +88,7 @@ function handleBookDeletion (book) {
 
 // Handles submitting the list to database when user submits list
 function handleListSubmit () {
-  fetch('https://morning-tundra-74810.herokuapp.com/lists', {
+  fetch('http://localhost:5000/lists', {
     method: 'POST',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
@@ -197,7 +197,7 @@ function handleResultSelect (book) {
 function getBooks (value) {
   // Sanitise input
   if (value && value.trim().length > 0) {
-    fetch(`https://morning-tundra-74810.herokuapp.com/search/${value}`, {
+    fetch(`http://localhost:5000/search/${value}`, {
       method: 'POST'
     })
       .then((res) => {
