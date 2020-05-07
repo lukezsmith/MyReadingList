@@ -2,8 +2,6 @@ const mongoose = require('mongoose');
 const config = require('config');
 const db = config.get('mongoURI');
 
-// const db = 'dhfuisdhiud';
-
 class Database {
   // Connects to the MongoDB database
   async connectDB () {
