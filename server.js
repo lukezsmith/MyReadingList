@@ -11,3 +11,5 @@ db.connectDB();
 
 // Listen for app
 app.listen(PORT);
+
+console.log(`MyReadingList running at http://localhost:${PORT}/`);
