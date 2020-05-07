@@ -22,21 +22,22 @@
   },
   "homepage": "https://github.com/lukezsmith/prog_web_assignment_vanilla#readme",
   "devDependencies": {
-    "config": "^3.3.1",
-    "cors": "^2.8.5",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "express": "^4.17.1",
     "jest": "^26.0.1",
-    "mongoose": "^5.9.10",
-    "n": "^6.5.1",
     "nodemon": "^2.0.3",
-    "supertest": "^4.0.2",
-    "tiny-slider": "^2.9.2"
+    "supertest": "^4.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "config": "^3.3.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.12",
+    "n": "^6.5.1",
+    "tiny-slider": "^2.9.2"
+  }
 }
