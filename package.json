@@ -7,7 +7,7 @@
   },
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server",
+    "start": "node server.js",
     "pretest": "npx eslint -c .eslintrc.js server.js app.js Book.js ./models/ReadingList.js ./config/db.js ./client/lists.js ./client/create.js ./client/list.js",
     "test": "jest "
   },
