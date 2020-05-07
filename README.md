@@ -5,6 +5,7 @@
 * 1.1 - Downloading MyReadingList
 * 1.2 - Installation
 * 1.3 - Running MyReadingList
+* 1.4 - Testing
 
 ### 2 - MyReadingList API:
 * 2.1 - Endpoints
@@ -19,13 +20,16 @@
 ## Installation & Setup
 ### 1.1 - Downloading MyReadingList:
 
-Clone the repository by running `git clone https://github.com/lukezsmith/MyReadingList.git` in terminal or [https://github.com/lukezsmith/MyReadingList/archive/master.zip](download the zip)
+Clone the repository by running `git clone https://github.com/lukezsmith/MyReadingList.git` in terminal or [download the zip](https://github.com/lukezsmith/MyReadingList/archive/master.zip)
 
 ### 1.2 - Installation:
 Install dependencies by running `npm install` in terminal
 
 ### 1.3 - Running MyReadingList:
 Run MyReadingList by running `npm start` in terminal
+
+### 1.4 - Testing:
+Test MyReadingList by running `npm test` in terminal
 
 ## MyReadingList API
 ### 2.1 - Endpoints
