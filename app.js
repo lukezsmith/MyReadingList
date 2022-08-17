@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const config = require('config');
 const axios = require('axios');
 
+require('dotenv').config()
+
 // Reading list db mongoose schema model
 const ReadingList = require('./models/ReadingList');
 
@@ -12,8 +14,7 @@ const ReadingList = require('./models/ReadingList');
 const Book = require('./Book');
 
 // Google Books API key
-const googleBooksApiKey = config.get('googleBooksApiKey');
-
+const googleBooksApiKey = process.env.googleBooksApiKey;
 // Google Books API endpoint for getting list of volumes
 const googleBooksUrl = 'https://www.googleapis.com/books/v1/volumes?q=';
 
@@ -173,6 +174,7 @@ app.get('/lists', async (req, res) => {
   try {
     var readingList = await ReadingList.find().limit(10).sort('-date');
     res.status(200).json(readingList);
+    console.log(readingList)
   } catch (err) {
     console.error(err);
     res.status(400).send('Bad request');
