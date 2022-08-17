@@ -1,5 +1,7 @@
 # MyReadingList
 
+![MyReadingList](screenshot.png)
+
 ## Table of Contents
 ### 1 - Installation & Setup:
 * 1.1 - Downloading MyReadingList
