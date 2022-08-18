@@ -1,6 +1,8 @@
 /* global fetch */
 /* global location */
 
+const PORT = 7777;
+
 function fetchWithTimeout (url, timeout = 7000) {
   return Promise.race([
       fetch(url),
@@ -23,7 +25,7 @@ function getList (listId) {
   // Variable that stores the response status
   var resp = '';
   // Fetches list from api
-  fetchWithTimeout(`http://localhost:5000/lists/${listId}`, 5000)
+  fetchWithTimeout(`http://localhost:${PORT}/lists/${listId}`, 5000)
     .then(function (res) {
       if (res.status === 404) {
         resp = res.status;
@@ -120,6 +122,7 @@ function getList (listId) {
       }
     })
     .catch(function (err) {
+      console.log(err)
       console.error(err.message);
       switch (resp) {
         case 400:
@@ -144,7 +147,7 @@ function handleCommentSubmit (listId, commentValue) {
   // check comment value is not empty
   if (commentValue && commentValue.trim().length > 0) {
     // update list with new comment
-    fetch(`http://localhost:5000/lists/${listId}`, {
+    fetch(`http://localhost:${PORT}/lists/${listId}`, {
       method: 'PATCH',
       mode: 'cors',
       headers: { 'Content-Type': 'application/json' },

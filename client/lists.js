@@ -1,5 +1,7 @@
 /* global tns */
 /* global fetch */
+// require('dotenv').config()
+const PORT = 7777;
 
 function serverError () {
   // window.alert('HTTP 500 Internal Error - Could not connect to the server, please try again later.');
@@ -17,7 +19,7 @@ function fetchWithTimeout (url, timeout = 7000) {
 
 // Fetches ten most-recently created lists and populates list div with them
 function getLists () {
-fetchWithTimeout('http://localhost:5000/lists', 5000)
+fetchWithTimeout(`http://localhost:${PORT}/lists`, 5000)
   .then(res => res.json())
   .then((lists) => {
     if (lists.length === 0) {
@@ -107,8 +109,9 @@ fetchWithTimeout('http://localhost:5000/lists', 5000)
       if (buttons[i].hasAttribute('style')) { buttons[i].attributes.removeNamedItem('aria-label'); }
     }
   }
-}, () => {
+}, (error) => {
   // Error detected
+  console.log("error")
   serverError();
 });
 }

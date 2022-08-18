@@ -2,7 +2,6 @@
 var express = require('express');
 var path = require('path');
 const mongoose = require('mongoose');
-const config = require('config');
 const axios = require('axios');
 
 require('dotenv').config()
@@ -174,7 +173,6 @@ app.get('/lists', async (req, res) => {
   try {
     var readingList = await ReadingList.find().limit(10).sort('-date');
     res.status(200).json(readingList);
-    console.log(readingList)
   } catch (err) {
     console.error(err);
     res.status(400).send('Bad request');

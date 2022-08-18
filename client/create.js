@@ -1,5 +1,6 @@
 /* global fetch */
 /* global _ */
+const PORT = 7777;
 
 var searchValue = document.getElementById('search-input');
 // check if input is being updated
@@ -88,7 +89,7 @@ function handleBookDeletion (book) {
 
 // Handles submitting the list to database when user submits list
 function handleListSubmit () {
-  fetch('http://localhost:5000/lists', {
+  fetch(`http://localhost:${PORT}/lists`, {
     method: 'POST',
     mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
@@ -197,7 +198,7 @@ function handleResultSelect (book) {
 function getBooks (value) {
   // Sanitise input
   if (value && value.trim().length > 0) {
-    fetch(`http://localhost:5000/search/${value}`, {
+    fetch(`http://localhost:${PORT}/search/${value}`, {
       method: 'POST'
     })
       .then((res) => {
