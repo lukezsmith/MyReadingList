@@ -1,7 +1,7 @@
 /* global tns */
 /* global fetch */
 // require('dotenv').config()
-const PORT = 7777;
+const PORT = 44329;
 
 function serverError () {
   // window.alert('HTTP 500 Internal Error - Could not connect to the server, please try again later.');

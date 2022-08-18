@@ -2,7 +2,7 @@
 const app = require('./app');
 
 // Set port to be used for server
-const PORT = process.env.PORT || 7777;
+const PORT = process.env.PORT || 44329;
 
 // Connect to mongoDB database
 const Database = require('./config/db');
