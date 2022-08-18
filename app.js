@@ -1,6 +1,7 @@
 // Imports relevant dependencies
 var express = require('express');
-var path = require('path');
+var path = require('path'); 
+var cors = require('cors');
 const mongoose = require('mongoose');
 const axios = require('axios');
 
@@ -23,6 +24,7 @@ var app = express();
 // Initialise middleware
 app.use(express.json({ extended: false }));
 app.use(express.static(path.join(__dirname, '/client')));
+app.use(cors());
 
 // Helper function for validating each book returned by Google Books API GET request
 function allFieldsPresent (book) {
