@@ -12,4 +12,4 @@ db.connectDB();
 // Listen for app
 app.listen(PORT);
 
-console.log(`MyReadingList running at http://localhost:${PORT}/`);
+console.log(`MyReadingList running at https://morning-tundra-74810.herokuapp.com/`);

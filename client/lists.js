@@ -19,7 +19,7 @@ function fetchWithTimeout (url, timeout = 7000) {
 
 // Fetches ten most-recently created lists and populates list div with them
 function getLists () {
-fetchWithTimeout(`http://localhost:${PORT}/lists`, 5000)
+fetchWithTimeout(`https://morning-tundra-74810.herokuapp.com/lists`, 5000)
   .then(res => res.json())
   .then((lists) => {
     if (lists.length === 0) {
