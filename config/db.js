@@ -12,6 +12,11 @@ class Database {
       useCreateIndex: true,
       useUnifiedTopology: true
     });
+
+    mongoose.connection.db.listCollections().toArray(function (err, names) {
+      console.log(names); // [{ name: 'dbname.myCollection' }]
+      // module.exports.Collection = names;
+  });
     return true;
   } catch (err) {
     console.error('Unable to connect to database, please try again later.');
