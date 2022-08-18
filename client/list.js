@@ -1,7 +1,7 @@
 /* global fetch */
 /* global location */
 
-const PORT = 44329;
+const PORT = 80;
 
 function fetchWithTimeout (url, timeout = 7000) {
   return Promise.race([

@@ -1,6 +1,6 @@
 /* global fetch */
 /* global _ */
-const PORT = 44329;
+const PORT = 80;
 
 var searchValue = document.getElementById('search-input');
 // check if input is being updated

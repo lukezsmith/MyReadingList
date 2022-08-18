@@ -78,7 +78,7 @@ Test MyReadingList by running `npm test` in terminal
     * Request must include the following: `comment`
 
 ### 2.2 - JSON Response Example
-Request: `GET http://localhost:44329/lists/5eaf6b599a236024347a6df5` 
+Request: `GET http://localhost:80/lists/5eaf6b599a236024347a6df5` 
 
 Response: 
 
@@ -154,7 +154,7 @@ An API key is also used in the query which can be found/changed in `/config/defa
     * Request must include the following: `query`
 
 ### 3.2 - JSON Response Example
-Request: `POST http://localhost:44329/search/mathematics` 
+Request: `POST http://localhost:80/search/mathematics` 
 
 Response: 
 ```json
