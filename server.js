@@ -10,6 +10,6 @@ const db = new Database();
 db.connectDB();
 
 // Listen for app
-app.listen(PORT, '0.0.0.0');
+app.listen(PORT);
 
 console.log(`MyReadingList running at http://localhost:${PORT}/`);
